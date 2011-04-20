@@ -1,6 +1,6 @@
 = ti
 
-Description goes here.
+Titanium Application Generator. Uses CoffeeScript and Jasmine for testing.
 
 == Contributing to ti
  
