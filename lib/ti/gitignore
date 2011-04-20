@@ -26,4 +26,9 @@
 #
 # For vim:
 #*.swp
-
+#
+# For the project:
+#
+build
+tmp
+project-assets
