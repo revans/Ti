@@ -8,13 +8,15 @@ require 'fileutils'
 
 module Ti
   VERSION         = '1.6.0'
+  # TODO: Need to support those how have install Titanium in their $HOME dir.
   OSX_TITANIUM    = "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{VERSION}/titanium.py"
   LINUX_TITANIUM  = "$HOME/.titanium/mobilesdk/linux/#{VERSION}/titanium.py"
 
   class Generate
     class << self
       attr_accessor :project_name, :devise_platform, :app_id
-    
+
+
       # Ti::Generate.new_project('demo', 'org.codewranglers.demo', 'ipad')
       def new_project(name, id, platform='iphone')
         @project_name    = name

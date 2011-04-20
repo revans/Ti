@@ -1,8 +1,10 @@
-= ti
+= Ti
 
-Titanium Application Generator. Uses CoffeeScript and Jasmine for testing.
+Titanium Application Generator. Uses CoffeeScript for writing your JavaScript, Jasmine and Guard for testing. 
 
-== Contributing to ti
+Just playing with some ideas.
+
+== Contributing to Ti
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
