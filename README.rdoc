@@ -4,6 +4,11 @@ Titanium Application Generator. Uses CoffeeScript for writing your JavaScript, J
 
 Just playing with some ideas.
 
+== Requirements
+ 
+* ruby 1.9.2
+* libffi `brew install libffi`
+
 == Contributing to Ti
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
