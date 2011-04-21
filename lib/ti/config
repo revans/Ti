@@ -5,7 +5,6 @@ module Config
   doc     = Nokogiri::XML(config)
   config.close
 
-
   PROJECT_NAME        = "Application Name"
   PROJECT_ROOT        = File.dirname(__FILE__)
   PROJECT_VERSION     = "0.0.1"
@@ -13,7 +12,6 @@ module Config
   IPHONE_SDK_VERSION  = "4.3"
   ANDROID_SDK_VERSION = ""
 
-  # TODO: Version and Dir need to be pulled from ti.rb for generation
   TI_SDK_VERSION      = "1.6.0"
   TI_DIR              = "/Library/Application\ Support/Titanium"
 
