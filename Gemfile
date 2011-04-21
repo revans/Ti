@@ -9,6 +9,7 @@ group :runtime do
   gem 'colored'
   gem 'rocco'
   gem 'rake'
+  gem 'choice'
 end
 
 group :development do
