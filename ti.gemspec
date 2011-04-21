@@ -10,6 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert R Evans"]
   s.date = %q{2011-04-16}
+  s.default_executable = %q{ti}
   s.description = %q{Titanium Commandline Helper}
   s.email = %q{robert@codewranglers.org}
   s.executables = ["ti"]
@@ -26,6 +27,7 @@ Gem::Specification.new do |s|
     "README.rdoc",
     "Rakefile",
     "VERSION",
+    "bin/ti",
     "lib/ti.rb",
     "lib/ti/config",
     "lib/ti/gitignore",
@@ -37,7 +39,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/revans/ti}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.7.2}
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{Ti}
   s.test_files = [
     "test/helper.rb",
