@@ -53,7 +53,6 @@ module Ti
         end
       end
 
-      
       def remove_directories(*names)
         names.each do |name|
           log "Removing #{name} directory."
@@ -67,7 +66,6 @@ module Ti
           FileUtils.rm(location.join(file))
         end
       end
-  
 
       def remove_old_files
         remove_files('README')
