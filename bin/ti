@@ -39,7 +39,7 @@ Choice.options do
   end
 
   option :version do
-    short 'v'
+    short '-v'
     long '--version'
     desc 'Show version'
   end

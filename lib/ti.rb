@@ -26,6 +26,7 @@ module Ti
         @devise_platform = platform
         @app_id          = id
         if `#{generate_titanium_project}`
+          create_temp_folder
           remove_old_files
           generate_files
           log "Your Titanium project is ready for you to get rockin!"
