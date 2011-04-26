@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ti}
-  s.version = "0.1.1"
+  s.version = "0.1.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert R Evans", "Julius Francisco"]
@@ -32,6 +32,7 @@ Gem::Specification.new do |s|
     "lib/ti/config",
     "lib/ti/gitignore",
     "lib/ti/rakefile",
+    "lib/ti/templates/app.coffee",
     "test/helper.rb",
     "test/test_ti.rb",
     "ti.gemspec"
