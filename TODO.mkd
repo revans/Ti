@@ -1,0 +1,9 @@
+# TODO
+  
+* CoffeeScript Compiling doesn't work because "path" needs to be implemented. The idea is to make this a dynamic lookup.
+* File creation, moving, replacing, etc should be moved to a module that can be included in other classes.
+* Config, gitignore, rakefile, readme need to be moved to an appropriately named folder inside of the ti directory.
+* Jasmine needs to be added.
+* Guard needs to be added
+* SASS needs to be added.
+* Use Thor instead of the choice gem.
