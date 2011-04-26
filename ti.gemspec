@@ -5,10 +5,10 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ti}
-  s.version = "0.0.2"
+  s.version = "0.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Robert R Evans"]
+  s.authors = ["Robert R Evans", "Julius Francisco"]
   s.date = %q{2011-04-16}
   s.default_executable = %q{ti}
   s.description = %q{Titanium Commandline Helper}

@@ -13,6 +13,7 @@ module Ti
   # TODO: Need to support those how have install Titanium in their $HOME dir.
   OSX_TITANIUM    = "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{VERSION}/titanium.py"
   LINUX_TITANIUM  = "$HOME/.titanium/mobilesdk/linux/#{VERSION}/titanium.py"
+  TI_TEMP         = "/tmp/ti_temp"
 
   class Generate
     class << self
@@ -74,14 +75,35 @@ module Ti
         remove_directories('Resources')
       end
 
+      def create_temp_folder(destroy=false)
+        if destroy
+          FileUtils.rm_rf TI_TEMP
+        else
+          FileUtils.mkdir TI_TEMP
+        end
+      end
+
+      def copy_defaults
+        create_temp_folder
+        FileUtils.cp("Resources/KS_nav_ui.png", "/tmp/ti_temp/")
+        FileUtils.cp("Resources/KS_nav_views.png", "/tmp/ti_temp/")
+      end
+
 
       def generate_files
         create_directories('Resources', 'src', 'docs', 'specs', 'Resources/images', 'Resources/stylesheets', 'Resources/vendor') 
         touch('Readme.mkd')
-        create_new_file("src/app.coffee", '')
+        # create_new_file("src/app.coffee", '')
+        create_new_file("src/app.coffee", File.read(@@ti.join('ti/templates/app.coffee')))
         create_new_file(".gitignore", File.read(@@ti.join('ti/gitignore')))
         create_new_file("config.rb",  File.read(@@ti.join('ti/config')))
         create_new_file("Rakefile",   File.read(@@ti.join('ti/rakefile')))
+
+        # load default images
+        FileUtils.cp("/tmp/ti_temp/*.png", "Resources/images/")
+
+        # Destroy temp folder
+        create_temp_folder true
       end
 
 
