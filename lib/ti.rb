@@ -10,11 +10,13 @@ require 'rocco'
 
 module Ti
   VERSION         = '1.6.0'
+  
   # TODO: Need to support those how have install Titanium in their $HOME dir.
+  
   OSX_TITANIUM    = "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{VERSION}/titanium.py"
   LINUX_TITANIUM  = "$HOME/.titanium/mobilesdk/linux/#{VERSION}/titanium.py"
-  TI_TEMP         = "/tmp/ti_temp"
-
+  
+  autoload  :Logger,  "ti/logger.rb"
   autoload  :Utils,   "ti/utils.rb"
 
   class Generate
@@ -48,7 +50,7 @@ module Ti
 
 
       def generate_files
-        create_directories('Resources', 'app', 'docs', 'specs', 'Resources/images', 'app/assets', 'Resources/vendor') 
+        create_directories('Resources', 'app', 'docs', 'specs', 'Resources/images', 'Resources/vendor', 'app/models', 'app/views', 'app/stylesheets', 'config') 
         touch('Readme.mkd')
 
         

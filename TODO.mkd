@@ -6,4 +6,6 @@
 * Jasmine needs to be added.
 * Guard needs to be added
 * SASS needs to be added.
+* Need to remove the perl script in the rakefile
 * Use Thor instead of the choice gem.
+* Documentation.

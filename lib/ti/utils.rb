@@ -41,9 +41,9 @@ module Utils
 
   def create_temp_folder(destroy=false)
     if destroy
-      FileUtils.rm_rf TI_TEMP
+      FileUtils.rm_rf "/tmp/ti_temp"
     else
-      FileUtils.mkdir TI_TEMP
+      FileUtils.mkdir "/tmp/ti_temp" unless File.exists?("/tmp/ti_temp")
     end
   end
   

@@ -1,5 +1,5 @@
 require 'rubygems'
-require File.join(File.dirname(__FILE__), 'config.rb')
+require File.join(File.dirname(__FILE__), 'config/config.rb')
 include Config
 
 task :default => ["build:iphone"]
