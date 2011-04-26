@@ -10,7 +10,7 @@ namespace :project do
     puts "#{PROJECT_NAME} at version #{PROJECT_VERSION}."
     puts " App ID: #{APP_ID}."
     puts " App Name: #{APP_NAME}."
-    puts " Building for: #{APP_DEVISE}."
+    puts " Building for: #{APP_DEVICE}."
     puts "  Using iOS SDK Version #{IPHONE_SDK_VERSION}."
     puts "  Using Android Version #{ANDROID_SDK_VERSION}."
     puts "  Titanium Build Version #{TI_SDK_VERSION}."

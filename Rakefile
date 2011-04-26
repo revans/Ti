@@ -18,7 +18,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary     = %Q{Ti}
   gem.description = %Q{Titanium Commandline Helper}
   gem.email       = "robert@codewranglers.org"
-  gem.authors     = ["Robert R Evans"]
+  gem.authors     = ["Robert R Evans", "Julius Francisco"]
   gem.date        = "2011-04-16"
   gem.executables = ["ti"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,

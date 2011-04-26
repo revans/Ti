@@ -3,7 +3,7 @@
 require File.expand_path(File.join(File.dirname(__FILE__), %w[ .. lib ti ]))
 require "choice"
 
-PROGRAM_VERSION = "0.0.1"
+PROGRAM_VERSION = "0.1.1"
 
 Choice.options do
   header ''
@@ -39,7 +39,7 @@ Choice.options do
   end
 
   option :version do
-    short 'v'
+    short '-v'
     long '--version'
     desc 'Show version'
   end
