@@ -32,7 +32,7 @@ Choice.options do
 
   separator ''
   separator 'Common options:'
-  
+
   option :help do
     long '--help'
     desc 'Show this message'

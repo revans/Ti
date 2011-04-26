@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'colored'
 require File.join(File.dirname(__FILE__), 'config/config.rb')
 include Config
 
@@ -7,13 +8,13 @@ task :default => ["build:iphone"]
 namespace :project do
   desc "Get project information"
   task :info do
-    puts "#{PROJECT_NAME} at version #{PROJECT_VERSION}."
-    puts " App ID: #{APP_ID}."
-    puts " App Name: #{APP_NAME}."
-    puts " Building for: #{APP_DEVICE}."
-    puts "  Using iOS SDK Version #{IPHONE_SDK_VERSION}."
-    puts "  Using Android Version #{ANDROID_SDK_VERSION}."
-    puts "  Titanium Build Version #{TI_SDK_VERSION}."
+    puts "#{PROJECT_NAME} at version #{PROJECT_VERSION}.".green.bold
+    puts " App ID: #{APP_ID}.".green
+    puts " App Name: #{APP_NAME}.".green
+    puts " Building for: #{APP_DEVICE}.".green
+    puts "  Using iOS SDK Version #{IPHONE_SDK_VERSION}.".green
+    puts "  Using Android Version #{ANDROID_SDK_VERSION}.".green
+    puts "  Titanium Build Version #{TI_SDK_VERSION}.".green
   end
 end
 
