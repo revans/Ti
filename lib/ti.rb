@@ -9,7 +9,7 @@ require 'rocco'
 
 
 module Ti
-  ROOT_PATH       = Pathname(__FILE__).dirname.expand_path# unless ::Ti::ROOT_PATH.defined?
+  ROOT_PATH       = Pathname(__FILE__).dirname.expand_path unless ::Ti::ROOT_PATH.defined?
   VERSION         = '1.6.0'
   
   # TODO: Need to support those how have install Titanium in their $HOME dir.
@@ -27,5 +27,4 @@ module Ti
   # TODO: Pull this into it's own file. Generate should be a module and a new project should be the class. 
   #       e.g. Ti::Generate::Project.new(name, id, platform)
   #       e.g. Ti::Generate::Model.new(name, options)
-  #
 end
