@@ -17,13 +17,13 @@ module Ti
 
   class Generate
     class << self
-      attr_accessor :project_name, :devise_platform, :app_id
+      attr_accessor :project_name, :device_platform, :app_id
 
 
       # Ti::Generate.new_project('demo', 'org.codewranglers.demo', 'ipad')
       def new_project(name, id, platform='iphone')
         @project_name    = name
-        @devise_platform = platform
+        @device_platform = platform
         @app_id          = id
         if `#{generate_titanium_project}`
           copy_defaults
@@ -113,7 +113,7 @@ module Ti
 
 
       def generate_titanium_project
-        "#{OSX_TITANIUM} create --name=#{@project_name} --platform=#{@devise_platform} --id=#{@app_id}"
+        "#{OSX_TITANIUM} create --name=#{@project_name} --platform=#{@device_platform} --id=#{@app_id}"
       end
 
 
