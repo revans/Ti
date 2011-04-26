@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 
 group :runtime do
+  gem "sass",           "~> 3.1.1"
   gem "guard-sass", :git => "https://github.com/pengwynn/guard-sass"
   gem 'guard'
   gem 'guard-coffeescript'
@@ -11,6 +12,7 @@ group :runtime do
   gem 'colored'
   gem 'rocco'
   gem 'rake'
+  gem "thor",             "~> 0.14.6"
   gem 'choice' # TODO: Move to Thor
 end
 

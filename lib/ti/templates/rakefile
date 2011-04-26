@@ -32,10 +32,10 @@ end
 
 def compile
   puts "Compiling CoffeeScript"
-  
+  `coffee -c -bare -o Resources app`
   # TODO: APP_NAME needs to be changed to the real name, but set dynamically.
-  `coffee -p --join --bare #{paths.join(' ')} > Resources/#{APP_NAME}.js` # FIXME: this is will break as 'paths' is not implemented.
-  `coffee -p --bare src/app.coffee > Resources/app.js`
+  # `coffee -p --join --bare #{paths.join(' ')} > Resources/#{APP_NAME}.js` # FIXME: this is will break as 'paths' is not implemented.
+  # `coffee -p --bare src/app.coffee > Resources/app.js`
 end
 
 def build(options={})

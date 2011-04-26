@@ -15,10 +15,12 @@ module Ti
   LINUX_TITANIUM  = "$HOME/.titanium/mobilesdk/linux/#{VERSION}/titanium.py"
   TI_TEMP         = "/tmp/ti_temp"
 
+  autoload  :Utils,   "ti/utils.rb"
+
   class Generate
     class << self
       attr_accessor :project_name, :devise_platform, :app_id
-
+      include Utils
 
       # Ti::Generate.new_project('demo', 'org.codewranglers.demo', 'ipad')
       def new_project(name, id, platform='iphone')
@@ -36,72 +38,28 @@ module Ti
       end
 
 
-      def create_new_file(name, contents)
-        log "Creating #{name}"
-        File.open(location.join(name), 'w') { |f| f.write(contents) }
-      end
-
-      def touch(*filenames)
-        filenames.each do |filename|
-          log "Creating #{filename} file."
-          FileUtils.touch(location.join(filename))
-        end
-      end
-
-      def create_directories(*dirs)
-        dirs.each do |dir|
-          log "Creating the #{dir} directory."
-          FileUtils.mkdir_p(location.join(dir))
-        end
-      end
-
       
-      def remove_directories(*names)
-        names.each do |name|
-          log "Removing #{name} directory."
-          FileUtils.rm_rf(location.join(name))
-        end
-      end
-
-      def remove_files(*files)
-        files.each do |file|
-          log "Removing #{file} file."
-          FileUtils.rm(location.join(file))
-        end
-      end
-  
-
-      def remove_old_files
-        remove_files('README')
-        remove_directories('Resources')
-      end
-
-      def create_temp_folder(destroy=false)
-        if destroy
-          FileUtils.rm_rf TI_TEMP
-        else
-          FileUtils.mkdir TI_TEMP
-        end
-      end
 
       def copy_defaults
         create_temp_folder
-        FileUtils.cp(location.join("Resources/KS_nav_ui.png"), "/tmp/ti_temp/")
+        FileUtils.cp(location.join("Resources/KS_nav_ui.png"),    "/tmp/ti_temp/")
         FileUtils.cp(location.join("Resources/KS_nav_views.png"), "/tmp/ti_temp/")
       end
 
 
       def generate_files
-        create_directories('Resources', 'src', 'docs', 'specs', 'Resources/images', 'Resources/stylesheets', 'Resources/vendor') 
+        create_directories('Resources', 'app', 'docs', 'specs', 'Resources/images', 'app/assets', 'Resources/vendor') 
         touch('Readme.mkd')
-        # create_new_file("src/app.coffee", '')
-        create_new_file("src/app.coffee", File.read(@@ti.join('ti/templates/app.coffee')))
-        create_new_file(".gitignore", File.read(@@ti.join('ti/gitignore')))
-        create_new_file("config.rb",  File.read(@@ti.join('ti/config')))
-        create_new_file("Rakefile",   File.read(@@ti.join('ti/rakefile')))
+
+        
+        create_new_file("app/app.coffee",     File.read(@@ti.join('ti/templates/app/app.coffee')))
+        create_new_file(".gitignore",         File.read(@@ti.join('ti/templates/gitignore')))
+        create_new_file("config/config.rb",   File.read(@@ti.join('ti/templates/config')))
+        create_new_file("Rakefile",           File.read(@@ti.join('ti/templates/rakefile')))
+        create_new_file("Readme.mkd",         File.read(@@ti.join('ti/templates/readme')))
 
         # load default images
-        FileUtils.cp("/tmp/ti_temp/KS_nav_ui.png", location.join("Resources/images/"))
+        FileUtils.cp("/tmp/ti_temp/KS_nav_ui.png",    location.join("Resources/images/"))
         FileUtils.cp("/tmp/ti_temp/KS_nav_views.png", location.join("Resources/images/"))
 
         # Destroy temp folder
@@ -116,15 +74,6 @@ module Ti
 
       def generate_titanium_project
         "#{OSX_TITANIUM} create --name=#{@project_name} --platform=#{@devise_platform} --id=#{@app_id}"
-      end
-
-
-      def log(msg)
-        $stdout.puts(msg.green.bold)
-      end
-
-      def error(msg)
-        $stderr.puts(msg.red.bold)
       end
 
     end
