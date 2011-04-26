@@ -6,3 +6,4 @@
 * Jasmine needs to be added.
 * Guard needs to be added
 * SASS needs to be added.
+* Use Thor instead of the choice gem.
