@@ -86,8 +86,8 @@ module Ti
 
       def copy_defaults
         create_temp_folder
-        FileUtils.cp("Resources/KS_nav_ui.png", "/tmp/ti_temp/")
-        FileUtils.cp("Resources/KS_nav_views.png", "/tmp/ti_temp/")
+        FileUtils.cp(location.join("Resources/KS_nav_ui.png"), "/tmp/ti_temp/")
+        FileUtils.cp(location.join("Resources/KS_nav_views.png"), "/tmp/ti_temp/")
       end
 
 
@@ -101,7 +101,8 @@ module Ti
         create_new_file("Rakefile",   File.read(@@ti.join('ti/rakefile')))
 
         # load default images
-        FileUtils.cp("/tmp/ti_temp/*.png", "Resources/images/")
+        FileUtils.cp("/tmp/ti_temp/KS_nav_ui.png", location.join("Resources/images/"))
+        FileUtils.cp("/tmp/ti_temp/KS_nav_views.png", location.join("Resources/images/"))
 
         # Destroy temp folder
         create_temp_folder true
