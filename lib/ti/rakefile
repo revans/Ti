@@ -34,14 +34,14 @@ def compile
   puts "Compiling CoffeeScript"
   
   # TODO: APP_NAME needs to be changed to the real name, but set dynamically.
-  `coffee -p --join --bare #{paths.join(' ')} > Resources/#{APP_NAME}.js`
+  `coffee -p --join --bare #{paths.join(' ')} > Resources/#{APP_NAME}.js` # FIXME: this is will break as 'paths' is not implemented.
   `coffee -p --bare src/app.coffee > Resources/app.js`
 end
 
 def build(options={})
   compile
   options[:device] ||= 'iphone'
-  puts "Building with Titanium... (DEVICE_TYPE:#{options[:device]})"
+  puts "Building with Titanium... (DEVICE_TYPE:#{options[:device]})" # FIXME: output a better statement that would include Ti Generator is building this with Titanium...
   FileUtils.mkdir_p "#{PROJECT_ROOT}/#{PROJECT_NAME}/build/iphone/"
   sh %Q{bash -c "#{TI_BUILD} run #{PROJECT_ROOT}/ #{IPHONE_SDK_VERSION} #{APP_ID} #{APP_NAME} #{APP_DEVICE}" \
 | perl -pe 's/^\\[DEBUG\\].*$/\\e[35m$&\\e[0m/g;s/^\\[INFO\\].*$/\\e[36m$&\\e[0m/g;s/^\\[WARN\\].*$/\\e[33m$&\\e[0m/g;s/^\\[ERROR\\].*$/\\e[31m$&\\e[0m/g;'}
