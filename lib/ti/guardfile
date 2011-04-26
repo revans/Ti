@@ -1,0 +1,9 @@
+group 'styles' do
+  guard 'sass', :output => 'Resources', :output_format => 'jss' do
+    watch(%r{^stylesheets/.+\.sass})
+    watch(%r{^stylesheets/.+\.scss})
+  end
+end
+
+
+

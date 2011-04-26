@@ -97,6 +97,7 @@ module Ti
         create_new_file(".gitignore", File.read(@@ti.join('ti/gitignore')))
         create_new_file("config.rb",  File.read(@@ti.join('ti/config')))
         create_new_file("Rakefile",   File.read(@@ti.join('ti/rakefile')))
+        create_new_file("Guardfile",   File.read(@@ti.join('ti/guardfile')))
 
         # load default images
         FileUtils.cp("/tmp/ti_temp/KS_nav_ui.png", location.join("Resources/images/"))
