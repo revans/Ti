@@ -29,9 +29,9 @@ module Ti
 
 
         def generate_files
-          create_directories('Resources', 'app', 'docs', 'specs', 'Resources/images', 'Resources/vendor', 'app/models', 'app/views', 'app/stylesheets', 'config') 
+          create_project_directory
           touch('Readme.mkd')
-
+          touch('tmp/ti_temp')
 
           create_new_file("app/app.coffee",     File.read(::Ti::ROOT_PATH.join('ti/templates/app/app.coffee')))
           create_new_file(".gitignore",         File.read(::Ti::ROOT_PATH.join('ti/templates/gitignore')))
@@ -46,10 +46,23 @@ module Ti
           # Destroy temp folder
           create_temp_folder true
         end
-
+        
+        def create_project_directory
+          create_directories('Resources', 'Resources/images', 'Resources/vendor', 
+            'config', 
+            'docs', 
+            'app/models', 'app/views', 'app/stylesheets', 
+            'spec/models', 'spec/views',
+            'tmp') 
+        end
+        
+        def remove_old_files
+          remove_files('README')
+          remove_directories('Resources')
+        end
 
         def location
-          @location ||= Pathname.new(Dir.pwd).join(@project_name)
+          base_location.join(@project_name)
         end
 
         # TODO: Need to look at what system this is being ran on. If OSX check if titanium was installed in the $HOME dir.

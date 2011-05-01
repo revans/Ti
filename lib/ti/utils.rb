@@ -32,20 +32,6 @@ module Utils
       FileUtils.rm(location.join(file))
     end
   end
-
-
-  def remove_old_files
-    remove_files('README')
-    remove_directories('Resources')
-  end
-
-  def create_temp_folder(destroy=false)
-    if destroy
-      FileUtils.rm_rf "/tmp/ti_temp"
-    else
-      FileUtils.mkdir "/tmp/ti_temp" unless File.exists?("/tmp/ti_temp")
-    end
-  end
   
   def log(msg)
     ::Ti::Logger.report(msg)
@@ -53,6 +39,10 @@ module Utils
   
   def error(msg)
     ::Ti::Logger.error(msg)
+  end
+  
+  def base_location
+    @location ||= Pathname.new(Dir.pwd)
   end
   
 end

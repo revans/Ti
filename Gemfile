@@ -19,5 +19,5 @@ end
 group :development do
   gem "bundler",  "~> 1.0.10"
   gem "jeweler",  "~> 1.5.2"
-  gem "rcov",     ">= 0"
+  gem "rspec",    "~> 2.5.0"
 end

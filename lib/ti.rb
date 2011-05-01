@@ -5,9 +5,6 @@ require 'fileutils'
 require 'colored'
 require 'rocco'
 
-# @@ti = Pathname(__FILE__).dirname.expand_path
-
-
 module Ti
   ROOT_PATH       = Pathname(__FILE__).dirname.expand_path unless ::Ti::ROOT_PATH.defined?
   VERSION         = '1.6.0'
@@ -22,6 +19,7 @@ module Ti
   
   module Generate
     autoload  :Project, "ti/generate/project.rb"
+    autoload  :Model,   "ti/generate/model.rb"
   end
   
   # TODO: Pull this into it's own file. Generate should be a module and a new project should be the class. 
