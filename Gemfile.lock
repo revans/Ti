@@ -91,3 +91,4 @@ DEPENDENCIES
   rake
   rcov
   rocco
+  sass

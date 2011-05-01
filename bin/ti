@@ -34,6 +34,7 @@ Choice.options do
   separator 'Common options:'
 
   option :help do
+    short '-h'
     long '--help'
     desc 'Show this message'
   end

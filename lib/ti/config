@@ -13,7 +13,7 @@ module Config
   ANDROID_SDK_VERSION = ""
 
   TI_SDK_VERSION      = "1.6.0"
-  TI_DIR              = "/Library/Application\ Support/Titanium"
+  TI_DIR              = "/Library/Application\\ Support/Titanium"
 
   TI_ASSETS_DIR       = "#{TI_DIR}/mobilesdk/osx/#{TI_SDK_VERSION}"
   TI_IPHONE_DIR       = "#{TI_ASSETS_DIR}/iphone"
@@ -22,6 +22,6 @@ module Config
 
   # Application
   APP_ID              = doc.xpath('ti:app/id').text
-  APP_NAME            = doc.xpath('ti:app/id').text
+  APP_NAME            = doc.xpath('ti:app/name').text
   APP_DEVICE          = "iphone"
 end
