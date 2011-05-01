@@ -1,5 +1,5 @@
 module Utils
-  def create_new_file(name, contents)
+  def create_new_file(name, contents='')
     log "Creating #{name}"
     File.open(location.join(name), 'w') { |f| f.write(contents) }
   end
