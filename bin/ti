@@ -5,10 +5,16 @@ options = ::Ti::Options.parse(ARGV)
 
 # Create a new project
 if options.name
-  Ti::Generate::Project.create(options.name, options.device_id, (options.platform || 'iphone'))
   puts "Generating a new Ti Project named #{options.name}"
+  Ti::Generate::Project.create(options.name, options.device_id, (options.platform || 'iphone'))
 end
 
-# TODO: Create a new model
 
-# TODO: Create a new view
+if options.model
+  Ti::Generate::Model.create(options.model)
+end
+
+
+if options.model
+  Ti::Generate::View.create(options.view)
+end

@@ -31,6 +31,7 @@ module Ti
         def generate_files
           create_project_directory
           touch('Readme.mkd')
+          # touch('specs/spec_helper.coffee') # TODO: Necessary? If so, what is in it?
 
           create_new_file("app/app.coffee",     File.read(::Ti::ROOT_PATH.join('ti/templates/app/app.coffee')))
           create_new_file(".gitignore",         File.read(::Ti::ROOT_PATH.join('ti/templates/gitignore')))
@@ -38,6 +39,7 @@ module Ti
           create_new_file("Rakefile",           File.read(::Ti::ROOT_PATH.join('ti/templates/rakefile')))
           create_new_file("Readme.mkd",         File.read(::Ti::ROOT_PATH.join('ti/templates/readme')))
           create_new_file("Guardfile",          File.read(::Ti::ROOT_PATH.join('ti/templates/guardfile')))
+          create_new_file("specs/app_spec.coffee",          File.read(::Ti::ROOT_PATH.join('ti/templates/specs/app_spec.coffee')))
           
           # load default images
           FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
@@ -49,7 +51,7 @@ module Ti
             'config', 
             'docs', 
             'app/models', 'app/views', 'app/stylesheets', 
-            'spec/models', 'spec/views') 
+            'specs/models', 'specs/views') 
         end
         
         def remove_old_files
