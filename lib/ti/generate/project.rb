@@ -10,7 +10,8 @@ module Ti
           @project_name    = name
           @device_platform = platform
           @app_id          = id
-          if `#{generate_titanium_project}`
+          if system(generate_titanium_project)
+            create_directories('tmp')
             copy_defaults
             remove_old_files
             generate_files
@@ -22,16 +23,14 @@ module Ti
 
 
         def copy_defaults
-          create_temp_folder
-          FileUtils.cp(location.join("Resources/KS_nav_ui.png"),    "/tmp/ti_temp/")
-          FileUtils.cp(location.join("Resources/KS_nav_views.png"), "/tmp/ti_temp/")
+          FileUtils.cp(location.join("Resources/KS_nav_ui.png"),    "/tmp/")
+          FileUtils.cp(location.join("Resources/KS_nav_views.png"), "/tmp/")
         end
 
 
         def generate_files
           create_project_directory
           touch('Readme.mkd')
-          touch('tmp/ti_temp')
 
           create_new_file("app/app.coffee",     File.read(::Ti::ROOT_PATH.join('ti/templates/app/app.coffee')))
           create_new_file(".gitignore",         File.read(::Ti::ROOT_PATH.join('ti/templates/gitignore')))
@@ -40,11 +39,8 @@ module Ti
           create_new_file("Readme.mkd",         File.read(::Ti::ROOT_PATH.join('ti/templates/readme')))
 
           # load default images
-          FileUtils.cp("/tmp/ti_temp/KS_nav_ui.png",    location.join("Resources/images/"))
-          FileUtils.cp("/tmp/ti_temp/KS_nav_views.png", location.join("Resources/images/"))
-
-          # Destroy temp folder
-          create_temp_folder true
+          FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
+          FileUtils.cp("/tmp/KS_nav_views.png", location.join("Resources/images/"))
         end
         
         def create_project_directory
@@ -52,12 +48,11 @@ module Ti
             'config', 
             'docs', 
             'app/models', 'app/views', 'app/stylesheets', 
-            'spec/models', 'spec/views',
-            'tmp') 
+            'spec/models', 'spec/views') 
         end
         
         def remove_old_files
-          remove_files('README')
+          remove_files('README')          
           remove_directories('Resources')
         end
 

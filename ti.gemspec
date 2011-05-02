@@ -32,6 +32,8 @@ Gem::Specification.new do |s|
     "lib/ti/generate/model.rb",
     "lib/ti/generate/project.rb",
     "lib/ti/logger.rb",
+    "lib/ti/options.rb",
+    "lib/ti/parse_options.rb",
     "lib/ti/templates/app/app.coffee",
     "lib/ti/templates/config",
     "lib/ti/templates/gitignore",

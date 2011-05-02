@@ -5,11 +5,12 @@ require 'pathname'
 require 'fileutils'
 require 'colored'
 require 'rocco'
+require 'ostruct'
 
 module Ti
   VERSION           = File.read(File.join(File.dirname(__FILE__), '../VERSION')).chomp
   ROOT_PATH         = Pathname(__FILE__).dirname.expand_path
-  TITANIUM_VERSION  = '1.6.2'
+  TITANIUM_VERSION  = '1.6.0'
   
   # TODO: Need to support those how have install Titanium in their $HOME dir.
   
