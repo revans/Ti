@@ -15,6 +15,6 @@ if options.model
 end
 
 
-if options.model
+if options.view
   Ti::Generate::View.create(options.view)
 end
