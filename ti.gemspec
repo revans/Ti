@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
     "lib/ti/templates/app/app.coffee",
     "lib/ti/templates/config",
     "lib/ti/templates/gitignore",
+    "lib/ti/templates/guardfile",
     "lib/ti/templates/rakefile",
     "lib/ti/templates/readme",
     "lib/ti/utils.rb",
