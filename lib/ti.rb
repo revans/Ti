@@ -25,6 +25,7 @@ module Ti
   module Generate
     autoload  :Project,     "ti/generate/project.rb"
     autoload  :Model,       "ti/generate/model.rb"
+    autoload  :View,       "ti/generate/view.rb"
   end
   
 end
