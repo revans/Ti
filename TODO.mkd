@@ -1,14 +1,20 @@
 # TODO
   
 * CoffeeScript Compiling doesn't work because "path" needs to be implemented. The idea is to make this a dynamic lookup.
-* File creation, moving, replacing, etc should be moved to a module that can be included in other classes.
-* Config, gitignore, rakefile, readme need to be moved to an appropriately named folder inside of the ti directory.
-* Jasmine needs to be added.
-* Guard needs to be added
-* SASS needs to be added.
 * Need to remove the perl script in the rakefile
-* Use Thor instead of the choice gem.
 * Documentation.
+* Currently, using a home-brewed option parser, which works. Once I figure out why Thor is error-ing out on my system, I'll re implement with Thor.
+* Need to write a guard-jasmine gem.
+
+## Ideas
+
+I love autotest for rails. I'd like to have the coffee-scripts auto compiling, sass auto compiling, and jasmine specs being ran when changes are made. However, I'm concerned with the overhead of the first two, if set to auto compile. So, maybe this needs to be a config setting? e.g. 
+
+    Ti.auto_compile_sass = true
+    Ti.auto_compile_coffeescript = true
+    Ti.autotest_with_jasmine = true
+
+
 
 ## Versioning
 
