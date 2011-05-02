@@ -77,15 +77,15 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0.10)
-  coffee-script
-  colored
-  guard
-  guard-coffeescript
-  guard-livereload
+  coffee-script (~> 2.2.0)
+  colored (~> 1.2)
+  guard (~> 0.3.4)
+  guard-coffeescript (~> 0.2.0)
+  guard-livereload (~> 0.1.10)
   guard-sass!
-  jasmine
+  jasmine (~> 1.0.2.0)
   jeweler (~> 1.5.2)
-  rake
-  rocco
+  rake (~> 0.8.7)
+  rocco (~> 0.6)
   rspec (~> 2.5.0)
   sass (~> 3.1.1)

@@ -2,7 +2,7 @@ module Ti
   module Generate
     class Project
       class << self
-        attr_accessor :project_name, :devise_platform, :app_id
+        attr_accessor :project_name, :device_platform, :app_id
         include Utils
 
         # Ti::Generate::Project.create('demo', 'org.codewranglers.demo', 'ipad')
@@ -37,7 +37,8 @@ module Ti
           create_new_file("config/config.rb",   File.read(::Ti::ROOT_PATH.join('ti/templates/config')))
           create_new_file("Rakefile",           File.read(::Ti::ROOT_PATH.join('ti/templates/rakefile')))
           create_new_file("Readme.mkd",         File.read(::Ti::ROOT_PATH.join('ti/templates/readme')))
-
+          create_new_file("Guardfile",          File.read(::Ti::ROOT_PATH.join('ti/templates/guardfile')))
+          
           # load default images
           FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
           FileUtils.cp("/tmp/KS_nav_views.png", location.join("Resources/images/"))
