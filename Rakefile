@@ -9,7 +9,7 @@ rescue Bundler::BundlerError => e
 end
 
 require 'rake'
-
+require 'time'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
@@ -21,7 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Titanium Project Generator}
   gem.email       = "robert@codewranglers.org"
   gem.authors     = ["Robert R Evans", "Julius Francisco", 'Wynn Netherland']
-  gem.date        = "2011-04-16"
+  gem.date        = Time.now.strftime("%Y-%m-%d")
   gem.executables = ["ti"]
   gem.version     = File.read(File.join(File.dirname(__FILE__), 'VERSION')).chomp
    
