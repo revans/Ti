@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ti}
-  s.version = "0.0.3"
+  s.version = "0.0.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert R Evans", "Julius Francisco", "Wynn Netherland"]
@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
     "lib/ti.rb",
     "lib/ti/generate/model.rb",
     "lib/ti/generate/project.rb",
-    "lib/ti/guardfile",
+    "lib/ti/generate/view.rb",
     "lib/ti/logger.rb",
     "lib/ti/options.rb",
     "lib/ti/parse_options.rb",
@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "lib/ti/templates/guardfile",
     "lib/ti/templates/rakefile",
     "lib/ti/templates/readme",
+    "lib/ti/templates/specs/app_spec.coffee",
     "lib/ti/utils.rb",
     "test/helper.rb",
     "test/test_ti.rb",
