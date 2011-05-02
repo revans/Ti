@@ -7,7 +7,9 @@ rescue Bundler::BundlerError => e
   $stderr.puts "Run `bundle install` to install missing gems"
   exit e.status_code
 end
+
 require 'rake'
+
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
@@ -16,28 +18,19 @@ Jeweler::Tasks.new do |gem|
   gem.homepage    = "http://github.com/revans/ti"
   gem.license     = "MIT"
   gem.summary     = %Q{Ti}
-  gem.description = %Q{Titanium Commandline Helper}
+  gem.description = %Q{Titanium Project Generator}
   gem.email       = "robert@codewranglers.org"
-  gem.authors     = ["Robert R Evans", "Julius Francisco"]
+  gem.authors     = ["Robert R Evans", "Julius Francisco", 'Wynn Netherland']
   gem.date        = "2011-04-16"
   gem.executables = ["ti"]
-  # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+  gem.version     = File.read(File.join(File.dirname(__FILE__), 'VERSION')).chomp
+   
 end
 Jeweler::RubygemsDotOrgTasks.new
 
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-end
-
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
   test.pattern = 'test/**/test_*.rb'
   test.verbose = true
 end

@@ -1,28 +1,29 @@
 $:.unshift(File.dirname(__FILE__)) unless $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
+require 'rubygems'
 require 'pathname'
 require 'fileutils'
 require 'colored'
 require 'rocco'
 
 module Ti
-  ROOT_PATH       = Pathname(__FILE__).dirname.expand_path unless ::Ti::ROOT_PATH.defined?
-  VERSION         = '1.6.0'
+  VERSION           = File.read(File.join(File.dirname(__FILE__), '../VERSION')).chomp
+  ROOT_PATH         = Pathname(__FILE__).dirname.expand_path
+  TITANIUM_VERSION  = '1.6.2'
   
   # TODO: Need to support those how have install Titanium in their $HOME dir.
   
-  OSX_TITANIUM    = "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{::Ti::VERSION}/titanium.py"
-  LINUX_TITANIUM  = "$HOME/.titanium/mobilesdk/linux/#{::Ti::VERSION}/titanium.py"
+  OSX_TITANIUM    = "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{::Ti::TITANIUM_VERSION}/titanium.py"
+  LINUX_TITANIUM  = "$HOME/.titanium/mobilesdk/linux/#{::Ti::TITANIUM_VERSION}/titanium.py"
   
-  autoload  :Logger,  "ti/logger.rb"
-  autoload  :Utils,   "ti/utils.rb"
+  autoload  :Options,       'ti/options.rb'
+  autoload  :ParseOptions,  'ti/parse_options.rb'
+  autoload  :Logger,        "ti/logger.rb"
+  autoload  :Utils,         "ti/utils.rb"
   
   module Generate
-    autoload  :Project, "ti/generate/project.rb"
-    autoload  :Model,   "ti/generate/model.rb"
+    autoload  :Project,     "ti/generate/project.rb"
+    autoload  :Model,       "ti/generate/model.rb"
   end
   
-  # TODO: Pull this into it's own file. Generate should be a module and a new project should be the class. 
-  #       e.g. Ti::Generate::Project.new(name, id, platform)
-  #       e.g. Ti::Generate::Model.new(name, options)
 end

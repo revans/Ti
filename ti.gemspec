@@ -5,13 +5,12 @@
 
 Gem::Specification.new do |s|
   s.name = %q{ti}
-  s.version = "0.1.6"
+  s.version = "0.0.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Robert R Evans", "Julius Francisco"]
+  s.authors = ["Robert R Evans", "Julius Francisco", "Wynn Netherland"]
   s.date = %q{2011-04-16}
-  s.default_executable = %q{ti}
-  s.description = %q{Titanium Commandline Helper}
+  s.description = %q{Titanium Project Generator}
   s.email = %q{robert@codewranglers.org}
   s.executables = ["ti"]
   s.extra_rdoc_files = [
@@ -26,13 +25,19 @@ Gem::Specification.new do |s|
     "LICENSE.txt",
     "README.rdoc",
     "Rakefile",
+    "TODO.mkd",
     "VERSION",
     "bin/ti",
     "lib/ti.rb",
-    "lib/ti/config",
-    "lib/ti/gitignore",
-    "lib/ti/rakefile",
-    "lib/ti/templates/app.coffee",
+    "lib/ti/generate/model.rb",
+    "lib/ti/generate/project.rb",
+    "lib/ti/logger.rb",
+    "lib/ti/templates/app/app.coffee",
+    "lib/ti/templates/config",
+    "lib/ti/templates/gitignore",
+    "lib/ti/templates/rakefile",
+    "lib/ti/templates/readme",
+    "lib/ti/utils.rb",
     "test/helper.rb",
     "test/test_ti.rb",
     "ti.gemspec"
@@ -40,7 +45,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/revans/ti}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.rubygems_version = %q{1.7.2}
   s.summary = %q{Ti}
   s.test_files = [
     "test/helper.rb",
@@ -51,6 +56,8 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<sass>, ["~> 3.1.1"])
+      s.add_runtime_dependency(%q<guard-sass>, [">= 0"])
       s.add_runtime_dependency(%q<guard>, [">= 0"])
       s.add_runtime_dependency(%q<guard-coffeescript>, [">= 0"])
       s.add_runtime_dependency(%q<guard-livereload>, [">= 0"])
@@ -59,11 +66,12 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<colored>, [">= 0"])
       s.add_runtime_dependency(%q<rocco>, [">= 0"])
       s.add_runtime_dependency(%q<rake>, [">= 0"])
-      s.add_runtime_dependency(%q<choice>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.10"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
     else
+      s.add_dependency(%q<sass>, ["~> 3.1.1"])
+      s.add_dependency(%q<guard-sass>, [">= 0"])
       s.add_dependency(%q<guard>, [">= 0"])
       s.add_dependency(%q<guard-coffeescript>, [">= 0"])
       s.add_dependency(%q<guard-livereload>, [">= 0"])
@@ -72,12 +80,13 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<colored>, [">= 0"])
       s.add_dependency(%q<rocco>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
-      s.add_dependency(%q<choice>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.10"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.5.0"])
     end
   else
+    s.add_dependency(%q<sass>, ["~> 3.1.1"])
+    s.add_dependency(%q<guard-sass>, [">= 0"])
     s.add_dependency(%q<guard>, [">= 0"])
     s.add_dependency(%q<guard-coffeescript>, [">= 0"])
     s.add_dependency(%q<guard-livereload>, [">= 0"])
@@ -86,10 +95,9 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<colored>, [">= 0"])
     s.add_dependency(%q<rocco>, [">= 0"])
     s.add_dependency(%q<rake>, [">= 0"])
-    s.add_dependency(%q<choice>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.10"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.5.0"])
   end
 end
 

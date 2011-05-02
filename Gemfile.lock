@@ -12,7 +12,6 @@ GEM
     addressable (2.2.5)
     childprocess (0.1.8)
       ffi (~> 1.0.6)
-    choice (0.1.4)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
@@ -52,7 +51,6 @@ GEM
     mustache (0.99.3)
     rack (1.2.2)
     rake (0.8.7)
-    rcov (0.9.9)
     rdiscount (1.6.8)
     rocco (0.6)
       mustache
@@ -79,7 +77,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0.10)
-  choice
   coffee-script
   colored
   guard
@@ -89,5 +86,6 @@ DEPENDENCIES
   jasmine
   jeweler (~> 1.5.2)
   rake
-  rcov
   rocco
+  rspec (~> 2.5.0)
+  sass (~> 3.1.1)

@@ -1,50 +1,11 @@
 #!/usr/bin/env ruby
 
-require File.expand_path(File.join(File.dirname(__FILE__), %w[ .. lib ti ]))
-require "choice"
+require 'ti'
 
-PROGRAM_VERSION = "0.1.1"
+options   = ::Ti::Options.parse(ARGV)
 
-Choice.options do
-  header ''
-  header 'Specific options:'
-
-  option :name do
-    short '-n'
-    long '--name=demo'
-    desc 'Titanium Project Name'
-    default 'HelloWorld'
-  end
-
-  option :id do
-    short '-i'
-    long '--id=com.codewranglers.demo'
-    desc 'Your Project id'
-    default 'org.company.demo'
-  end
-
-  option :platform do
-    short '-p'
-    long '--platform=iphone'
-    desc 'Project Platform where you want to run your application'
-    default 'iphone'
-  end
-
-  separator ''
-  separator 'Common options:'
-
-  option :help do
-    long '--help'
-    desc 'Show this message'
-  end
-
-  option :version do
-    short '-v'
-    long '--version'
-    desc 'Show version'
-  end
-
+# Create a new project
+if options.name
+  Ti::Generate::Project.create(options.name, options.device_id, options.platform)
+  puts "Generating a new Ti Project named #{options.name}"
 end
-
-# Main entry point for the application
-Ti::Generate.new_project(Choice.choices[:name], Choice.choices[:id], Choice.choices[:platform])

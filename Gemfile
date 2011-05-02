@@ -12,8 +12,6 @@ group :runtime do
   gem 'colored'
   gem 'rocco'
   gem 'rake'
-  gem "thor",             "~> 0.14.6"
-  gem 'choice' # TODO: Move to Thor
 end
 
 group :development do
