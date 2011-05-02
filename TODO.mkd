@@ -6,4 +6,12 @@
 * Jasmine needs to be added.
 * Guard needs to be added
 * SASS needs to be added.
+* Need to remove the perl script in the rakefile
 * Use Thor instead of the choice gem.
+* Documentation.
+
+## Versioning
+
+When doing small upgrades/changes, use patch versioning.
+Once everything is in this, and it's well tested, we can go to version
+1.0
