@@ -1,20 +1,22 @@
 #!/usr/bin/env ruby
 
 require 'ti'
-options = ::Ti::Options.parse(ARGV)
+Ti::CLI.start
 
-# Create a new project
-if options.name
-  puts "Generating a new Ti Project named #{options.name}"
-  ::Ti::Generate::Project.create(options.name, options.device_id, (options.platform || 'iphone'))
-end
-
-
-if options.model
-  ::Ti::Generate::Model.create(options.model)
-end
-
-
-if options.view
-  ::Ti::Generate::View.create(options.view)
-end
+# options = ::Ti::Options.parse(ARGV)
+# 
+# # Create a new project
+# if options.name
+#   puts "Generating a new Ti Project named #{options.name}"
+#   ::Ti::Generate::Project.create(options.name, options.device_id, (options.platform || 'iphone'))
+# end
+# 
+# 
+# if options.model
+#   ::Ti::Generate::Model.create(options.model)
+# end
+# 
+# 
+# if options.view
+#   ::Ti::Generate::View.create(options.view)
+# end
