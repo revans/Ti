@@ -12,7 +12,7 @@ module Config
   IPHONE_SDK_VERSION  = "4.3"
   ANDROID_SDK_VERSION = ""
 
-  TI_SDK_VERSION      = "1.6.0"
+  TI_SDK_VERSION      = "1.6.2"
   TI_DIR              = "/Library/Application\\ Support/Titanium"
 
   TI_ASSETS_DIR       = "#{TI_DIR}/mobilesdk/osx/#{TI_SDK_VERSION}"
