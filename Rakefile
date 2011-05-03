@@ -20,7 +20,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary     = %Q{Ti}
   gem.description = %Q{Titanium Project Generator}
   gem.email       = "robert@codewranglers.org"
-  gem.authors     = ["Robert R Evans", "Julius Francisco", 'Wynn Netherland']
+  gem.authors     = ["Robert R Evans", "Julius Francisco", 'Wynn Netherland', 'Rupak Ganguly']
   gem.date        = Time.now.strftime("%Y-%m-%d")
   gem.executables = ["ti"]
   gem.version     = File.read(File.join(File.dirname(__FILE__), 'VERSION')).chomp
@@ -45,4 +45,29 @@ Rake::RDocTask.new do |rdoc|
   rdoc.title = "ti #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+
+require 'rspec/core'
+require 'rspec/core/rake_task'
+
+task :default => :spec
+
+desc "Run specs"
+RSpec::Core::RakeTask.new do |t|
+  t.rspec_opts = '--color'
+end
+
+namespace :spec do
+
+  desc "Run specs verbosely"
+  RSpec::Core::RakeTask.new('verbose') do |t|
+    t.rspec_opts = '--color --format documentation'
+  end
+
+  desc "Run specs with html report"
+  RSpec::Core::RakeTask.new('html') do |t|
+    t.rspec_opts = '--color --format html'
+  end
+
 end

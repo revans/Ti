@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/ti",
     "lib/ti.rb",
+    "lib/ti/cli.rb",
     "lib/ti/generate/model.rb",
     "lib/ti/generate/project.rb",
     "lib/ti/generate/view.rb",
