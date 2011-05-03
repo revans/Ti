@@ -1,3 +1,3 @@
 describe 'Jasmine', ->
-  it 'should require your to write your tests', ->
+  it 'should require you to write your tests', ->
     expect(yourCode).toBeLotsBetter()
