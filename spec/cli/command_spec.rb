@@ -47,14 +47,10 @@ describe "Ti Generator Commands" do
       end
     end
     context "Generate a new project: " do
-      context "with defaults (ti new)" do
-        it "should generate new project \"HelloWorld\"" do
-          response, status = capture_with_status(:stdout){ Ti::CLI.start(['new']) }
-          response.should eql("")
-          status.should eql(Ti::CLI::STATUS_TYPES[:success])
-        end
-        after (:all) do
-          remove_directories("HelloWorld")
+      context "with no name (ti new)" do
+        it "should exit with error" do
+          response, status = capture_with_status(:stderr){ Ti::CLI.start(['new']) }
+          response.should eql("\"new\" was called incorrectly. Call as \"rspec new <name> <id> <platform>\".\n")
         end
       end
       context "with custom name (ti new Demo)" do
