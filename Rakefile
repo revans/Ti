@@ -24,7 +24,7 @@ Jeweler::Tasks.new do |gem|
   gem.date        = Time.now.strftime("%Y-%m-%d")
   gem.executables = ["ti"]
   gem.version     = File.read(File.join(File.dirname(__FILE__), 'VERSION')).chomp
-   
+  gem.date        = Time.now.strftime("%Y-%m-%d")
 end
 Jeweler::RubygemsDotOrgTasks.new
 

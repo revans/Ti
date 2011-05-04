@@ -3,7 +3,6 @@
 * CoffeeScript Compiling doesn't work because "path" needs to be implemented. The idea is to make this a dynamic lookup.
 * Need to remove the perl script in the rakefile
 * Documentation.
-* Currently, using a home-brewed option parser, which works. Once I figure out why Thor is error-ing out on my system, I'll re implement with Thor.
 * Need to write a guard-jasmine gem.
 
 ## Ideas
