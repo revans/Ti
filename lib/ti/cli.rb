@@ -7,7 +7,14 @@ module Ti
                     :not_found        => 4,
                     :incorrect_usage  => 64,
                     }
-    
+
+    def cli_error(message, exit_status=nil)
+      $stderr.puts message
+      exit_status = ERROR_TYPES[exit_status] if exit_status.is_a?(Symbol)
+      exit exit_status || 1
+    end
+
+    ### TODO: When these commands list grows big, we need to move them into a seperate commands.rb file
     map %w(--version -v) => 'info'
     desc "info", "information about Ti."
     def info
@@ -15,7 +22,7 @@ module Ti
     end
     
     desc "new <name> <id> <platform>", "generates a new Titanium project."
-    long_desc "Generates a new Titanium project. See 'ti help project:new' for more information.
+    long_desc "Generates a new Titanium project. See 'ti help new' for more information.
               \n\nExamples:
               \n\nti new demo ==> Creates a new project with a default id (org.mycompany.demo) and sets the project platform to iphone.
               \n\nti new demo com.youwantit.dontyou ==> Creates a new project 'demo' with the id of 'com.youwantit.dontyou' to be used on the iphone.
