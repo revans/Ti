@@ -1,5 +1,4 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
-require 'stringio'
 
 describe "The Logger" do
   before(:each) do

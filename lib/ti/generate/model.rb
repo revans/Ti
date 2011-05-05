@@ -2,7 +2,7 @@ module Ti
   module Generate
     class Model
       class << self
-        include Utils
+        include ::Ti::Utils
         
         def create(name, options={})
           create_new_file("app/models/#{name}.coffee")

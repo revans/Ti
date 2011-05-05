@@ -3,7 +3,7 @@ module Ti
     class Project
       class << self
         attr_accessor :project_name, :device_platform, :app_id
-        include Utils
+        include ::Ti::Utils
 
         # Ti::Generate::Project.create('demo', 'org.codewranglers.demo', 'ipad')
         def create(name, id, platform='iphone')
