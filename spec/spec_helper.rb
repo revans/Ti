@@ -2,6 +2,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib', 'ti'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'rspec'
 require 'ti'
+require 'config'
 
 RSpec.configure do |config|
 
@@ -28,4 +29,10 @@ RSpec.configure do |config|
       FileUtils.rm_rf(project_dir.join(name)) if FileTest.exists?(project_dir.join(name))
     end
   end
+
+  def fixture_file(type, filename)
+    dir_name = type.to_s + "s"
+    File.dirname(__FILE__) + "/fixtures/#{dir_name}/#{filename}"
+  end
+
 end
