@@ -7,7 +7,7 @@ module Ti
                     :not_found        => 4,
                     :incorrect_usage  => 64,
                     }
-    desc ""
+    desc '', ''
     def cli_error(message, exit_status=nil)
       $stderr.puts message
       exit_status = ERROR_TYPES[exit_status] if exit_status.is_a?(Symbol)
