@@ -11,23 +11,6 @@ end
 require 'rake'
 require 'time'
 
-require 'jeweler'
-Jeweler::Tasks.new do |gem|
-  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name        = "ti"
-  gem.homepage    = "http://github.com/revans/ti"
-  gem.license     = "MIT"
-  gem.summary     = %Q{Ti}
-  gem.description = %Q{Titanium Project Generator}
-  gem.email       = "robert@codewranglers.org"
-  gem.authors     = ["Robert R Evans", "Julius Francisco", 'Wynn Netherland', 'Rupak Ganguly']
-  gem.date        = Time.now.strftime("%Y-%m-%d")
-  gem.executables = ["ti"]
-  gem.version     = File.read(File.join(File.dirname(__FILE__), 'VERSION')).chomp
-  gem.date        = Time.now.strftime("%Y-%m-%d")
-end
-Jeweler::RubygemsDotOrgTasks.new
-
 require 'rake/testtask'
 Rake::TestTask.new(:test) do |test|
   test.libs << 'lib' << 'test'
@@ -36,17 +19,6 @@ Rake::TestTask.new(:test) do |test|
 end
 
 task :default => :test
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "ti #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
 
 require 'rspec/core'
 require 'rspec/core/rake_task'

@@ -10,7 +10,6 @@ require 'thor'
 require 'ostruct'
 
 module Ti
-  VERSION           = File.read(File.join(File.dirname(__FILE__), '../VERSION')).chomp
   ROOT_PATH         = Pathname(__FILE__).dirname.expand_path
   TITANIUM_VERSION  = '1.6.2'
   
