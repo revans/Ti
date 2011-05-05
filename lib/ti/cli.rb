@@ -7,7 +7,6 @@ module Ti
                     :not_found        => 4,
                     :incorrect_usage  => 64,
                     }
-
     no_tasks {
     def cli_error(message, exit_status=nil)
       $stderr.puts message

@@ -2,7 +2,7 @@ module Ti
   module Generate
     class View
       class << self
-        include Utils
+        include ::Ti::Utils
         
         def create(name, options={})
           create_new_file("app/views/#{name}.coffee")
