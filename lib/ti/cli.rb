@@ -7,10 +7,11 @@ module Ti
                     :not_found        => 4,
                     :incorrect_usage  => 64,
                     }
+
     no_tasks {
     def cli_error(message, exit_status=nil)
       $stderr.puts message
-      exit_status = ERROR_TYPES[exit_status] if exit_status.is_a?(Symbol)
+      exit_status = STATUS_TYPES[exit_status] if exit_status.is_a?(Symbol)
       exit exit_status || 1
     end
     }
