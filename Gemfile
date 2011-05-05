@@ -12,6 +12,7 @@ group :runtime do
   gem 'colored',            "~> 1.2"
   gem 'rocco',              "~> 0.6"
   gem 'rake',               "~> 0.8.7"
+  gem 'erubis',             "~> 2.7.0"
 end
 
 group :development do

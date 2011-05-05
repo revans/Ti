@@ -6,6 +6,7 @@ require 'fileutils'
 require 'colored'
 require 'rocco'
 require 'thor'
+require 'erubis'
 
 require 'ostruct'
 
@@ -28,7 +29,8 @@ module Ti
   module Generate
     autoload  :Project,     "ti/generate/project.rb"
     autoload  :Model,       "ti/generate/model.rb"
-    autoload  :View,       "ti/generate/view.rb"
+    autoload  :View,        "ti/generate/view.rb"
+    autoload  :Scaffold,    "ti/generate/scaffold.rb"
   end
   
 end

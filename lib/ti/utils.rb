@@ -1,7 +1,15 @@
 module Utils
+
   def create_new_file(name, contents='')
     log "Creating #{name}"
     File.open(location.join(name), 'w') { |f| f.write(contents) }
+  end
+
+  def create_with_template(name, contents={})
+    log "Creating #{name} using templates"
+    template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
+    eruby = Erubis::Eruby.new(File.read(template))
+    create_new_file(name, eruby.evaluate(contents))
   end
 
   def touch(*filenames)
