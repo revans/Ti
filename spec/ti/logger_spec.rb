@@ -18,7 +18,7 @@ describe "The Logger" do
   
   context "Reporting back a success" do
     it "should output a formatted message with a green color" do
-      Ti::Logger.report("This is a success.")#.should == "This is a success."
+      Ti::Logger.report("This is a success.")
       $stdout.string.should == "\e[1m\e[32mThis is a success.\e[0m\e[0m\n"
     end
   end
