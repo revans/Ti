@@ -10,7 +10,6 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
   s.date = %q{2011-05-04}
-  s.default_executable = %q{ti}
   s.description = %q{Titanium Project Generator}
   s.email = %q{robert@codewranglers.org}
   s.executables = ["ti"]
@@ -32,6 +31,7 @@ Gem::Specification.new do |s|
     "bin/ti",
     "lib/ti.rb",
     "lib/ti/cli.rb",
+    "lib/ti/config.rb",
     "lib/ti/generate/model.rb",
     "lib/ti/generate/project.rb",
     "lib/ti/generate/view.rb",
@@ -45,6 +45,8 @@ Gem::Specification.new do |s|
     "lib/ti/templates/specs/app_spec.coffee",
     "lib/ti/utils.rb",
     "spec/cli/command_spec.rb",
+    "spec/fixtures/configs/tiapp.xml",
+    "spec/lib/config_spec.rb",
     "spec/spec_helper.rb",
     "spec/ti/logger_spec.rb",
     "spec/ti/utils_spec.rb",
@@ -53,14 +55,14 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/revans/ti}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.1}
+  s.rubygems_version = %q{1.7.2}
   s.summary = %q{Ti}
   s.test_files = [
     "spec/cli/command_spec.rb",
+    "spec/lib/config_spec.rb",
+    "spec/spec_helper.rb",
     "spec/ti/logger_spec.rb",
     "spec/ti/utils_spec.rb"
-    "spec/lib/config_spec.rb",
-    "spec/spec_helper.rb"
   ]
 
   if s.respond_to? :specification_version then
