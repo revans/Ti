@@ -39,13 +39,6 @@ module Ti
     desc "scaffold <window/tabgroup/view> <domain> <name>", "generate a scaffold for Titanium elements."
     def scaffold(ti_type, domain, name)
       ::Ti::Generate::View.create(name, { :domain => domain, :ti_type => ti_type })
-      # ::Ti::Generate::Scaffold.start
-      # case
-      # when ti_type =~ /window/i
-      #   ::Ti::Generate::Scaffold.create_window
-      # when ti_type =~ /tabgroup/i
-      #   ::Ti::Generate::Scaffold.tabgroup(name)
-      # end
     end
     
   end

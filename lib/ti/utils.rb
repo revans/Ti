@@ -9,7 +9,7 @@ module Utils
     log "Creating #{name} using templates"
     template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
     eruby = Erubis::Eruby.new(File.read(template))
-    create_new_file(name, eruby.evaluate(contents))
+    create_new_file(name, eruby.result(contents))
   end
 
   def touch(*filenames)

@@ -30,7 +30,6 @@ module Ti
     autoload  :Project,     "ti/generate/project.rb"
     autoload  :Model,       "ti/generate/model.rb"
     autoload  :View,        "ti/generate/view.rb"
-    autoload  :Scaffold,    "ti/generate/scaffold.rb"
   end
   
 end
