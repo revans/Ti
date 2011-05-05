@@ -19,15 +19,15 @@ module Ti
   LINUX_TITANIUM  = "$HOME/.titanium/mobilesdk/linux/#{::Ti::TITANIUM_VERSION}/titanium.py"
   
   autoload  :CLI,           'ti/cli.rb'
-  autoload  :Options,       'ti/options.rb'
-  autoload  :ParseOptions,  'ti/parse_options.rb'
+#  autoload  :Options,       'ti/options.rb'
+#  autoload  :ParseOptions,  'ti/parse_options.rb'
   autoload  :Logger,        "ti/logger.rb"
   autoload  :Utils,         "ti/utils.rb"
-  
+
   module Generate
     autoload  :Project,     "ti/generate/project.rb"
     autoload  :Model,       "ti/generate/model.rb"
-    autoload  :View,       "ti/generate/view.rb"
+    autoload  :View,        "ti/generate/view.rb"
   end
   
 end
