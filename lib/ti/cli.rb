@@ -8,11 +8,13 @@ module Ti
                     :incorrect_usage  => 64,
                     }
 
+    no_tasks {
     def cli_error(message, exit_status=nil)
       $stderr.puts message
       exit_status = ERROR_TYPES[exit_status] if exit_status.is_a?(Symbol)
       exit exit_status || 1
     end
+    }
 
     ### TODO: When these commands list grows big, we need to move them into a seperate commands.rb file
     map %w(--version -v) => 'info'
