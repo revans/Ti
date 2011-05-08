@@ -40,6 +40,7 @@ Gem::Specification.new do |s|
     "lib/ti/parse_options.rb",
     "lib/ti/templates/app/app.coffee",
     "lib/ti/templates/config",
+    "lib/ti/templates/defaults/Rakefile.erb",
     "lib/ti/templates/defaults/config.erb",
     "lib/ti/templates/gitignore",
     "lib/ti/templates/guardfile",
@@ -77,6 +78,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rocco>, ["~> 0.6"])
       s.add_runtime_dependency(%q<rake>, ["~> 0.8.7"])
       s.add_runtime_dependency(%q<erubis>, ["~> 2.7.0"])
+      s.add_runtime_dependency(%q<betabuilder>, [">= 0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.0.10"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_development_dependency(%q<rspec>, ["~> 2.5.0"])
@@ -92,6 +94,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rocco>, ["~> 0.6"])
       s.add_dependency(%q<rake>, ["~> 0.8.7"])
       s.add_dependency(%q<erubis>, ["~> 2.7.0"])
+      s.add_dependency(%q<betabuilder>, [">= 0"])
       s.add_dependency(%q<bundler>, ["~> 1.0.10"])
       s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
       s.add_dependency(%q<rspec>, ["~> 2.5.0"])
@@ -108,6 +111,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rocco>, ["~> 0.6"])
     s.add_dependency(%q<rake>, ["~> 0.8.7"])
     s.add_dependency(%q<erubis>, ["~> 2.7.0"])
+    s.add_dependency(%q<betabuilder>, [">= 0"])
     s.add_dependency(%q<bundler>, ["~> 1.0.10"])
     s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
     s.add_dependency(%q<rspec>, ["~> 2.5.0"])

@@ -37,7 +37,7 @@ namespace :setup do
   task :all do
     Rake::Task['setup:xml'].invoke
     Rake::Task['setup:entitlements'].invoke
-    Rake::Task['setup:rakefile].invoke
+    Rake::Task['setup:rakefile'].invoke
   end
 
   desc "Copy the tiapp.xml file into build/iphone directory"

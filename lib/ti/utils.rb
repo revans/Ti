@@ -60,6 +60,5 @@ module Utils
       tr("-", "_").
       downcase
   end
-end
 
 end

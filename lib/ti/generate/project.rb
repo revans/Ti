@@ -33,6 +33,11 @@ module Ti
           create_new_file("config/config.rb", eruby.result(:project_name => project_name))
         end
 
+        def create_rakefile_from_template(project_name)
+          template = "#{::Ti::ROOT_PATH}/ti/templates/defaults/Rakefile.erb"
+          eruby = Erubis::Eruby.new(File.read(template))
+          create_new_file("Rakefile", eruby.result({:app_name => project_name, :app_name_underscore => underscore(project_name)}))
+        end
 
         def generate_files
           create_project_directory
@@ -43,7 +48,8 @@ module Ti
           create_new_file(".gitignore",         File.read(::Ti::ROOT_PATH.join('ti/templates/gitignore')))
           # create_new_file("config/config.rb",   File.read(::Ti::ROOT_PATH.join('ti/templates/config')))
           create_config_from_templates(@project_name)
-          create_new_file("Rakefile",           File.read(::Ti::ROOT_PATH.join('ti/templates/rakefile')))
+          create_rakefile_from_template(@project_name)
+          # create_new_file("Rakefile",           File.read(::Ti::ROOT_PATH.join('ti/templates/rakefile')))
           create_new_file("Readme.mkd",         File.read(::Ti::ROOT_PATH.join('ti/templates/readme')))
           create_new_file("Guardfile",          File.read(::Ti::ROOT_PATH.join('ti/templates/guardfile')))
           create_new_file("specs/app_spec.coffee",          File.read(::Ti::ROOT_PATH.join('ti/templates/specs/app_spec.coffee')))
