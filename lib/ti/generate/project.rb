@@ -27,6 +27,12 @@ module Ti
           FileUtils.cp(location.join("Resources/KS_nav_views.png"), "/tmp/")
         end
 
+        def create_config_from_templates(project_name)
+          template = "#{::Ti::Root_PATH}/ti/templates/defaults/config.erb"
+          eruby = Erubis::Eruby.new(File.read(template))
+          create_new_file(name, eruby.result(:project_name => project_name)
+        end
+
 
         def generate_files
           create_project_directory
@@ -35,7 +41,8 @@ module Ti
 
           create_new_file("app/app.coffee",     File.read(::Ti::ROOT_PATH.join('ti/templates/app/app.coffee')))
           create_new_file(".gitignore",         File.read(::Ti::ROOT_PATH.join('ti/templates/gitignore')))
-          create_new_file("config/config.rb",   File.read(::Ti::ROOT_PATH.join('ti/templates/config')))
+          # create_new_file("config/config.rb",   File.read(::Ti::ROOT_PATH.join('ti/templates/config')))
+          create_config_from_templates(@project_name)
           create_new_file("Rakefile",           File.read(::Ti::ROOT_PATH.join('ti/templates/rakefile')))
           create_new_file("Readme.mkd",         File.read(::Ti::ROOT_PATH.join('ti/templates/readme')))
           create_new_file("Guardfile",          File.read(::Ti::ROOT_PATH.join('ti/templates/guardfile')))
