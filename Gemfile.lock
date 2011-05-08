@@ -9,7 +9,13 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
+    CFPropertyList (2.0.16)
+      libxml-ruby (>= 1.1.0)
+      rake (>= 0.7.0)
     addressable (2.2.5)
+    betabuilder (0.1.2)
+      CFPropertyList (~> 2.0.0)
+      uuid (~> 2.3.1)
     childprocess (0.1.8)
       ffi (~> 1.0.6)
     coffee-script (2.2.0)
@@ -23,7 +29,7 @@ GEM
       eventmachine (>= 0.12.9)
     erubis (2.7.0)
     eventmachine (0.12.10)
-    execjs (0.3.2)
+    execjs (0.3.3)
       multi_json (~> 1.0)
     ffi (1.0.7)
       rake (>= 0.8.7)
@@ -33,7 +39,7 @@ GEM
     guard-coffeescript (0.2.0)
       coffee-script (~> 2.2.0)
       guard (~> 0.3.0)
-    guard-livereload (0.1.10)
+    guard-livereload (0.1.11)
       em-websocket (~> 0.2.0)
       guard (>= 0.2.2)
       json (~> 1.5.1)
@@ -48,6 +54,8 @@ GEM
       rake
     json (1.5.1)
     json_pure (1.5.1)
+    libxml-ruby (2.0.5)
+    macaddr (1.0.0)
     multi_json (1.0.1)
     mustache (0.99.3)
     rack (1.2.2)
@@ -60,7 +68,7 @@ GEM
       rspec-core (~> 2.5.0)
       rspec-expectations (~> 2.5.0)
       rspec-mocks (~> 2.5.0)
-    rspec-core (2.5.1)
+    rspec-core (2.5.2)
     rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.5.0)
@@ -72,11 +80,14 @@ GEM
       json_pure
       rubyzip
     thor (0.14.6)
+    uuid (2.3.2)
+      macaddr (~> 1.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  betabuilder
   bundler (~> 1.0.10)
   coffee-script (~> 2.2.0)
   colored (~> 1.2)

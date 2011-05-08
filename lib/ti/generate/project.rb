@@ -28,9 +28,9 @@ module Ti
         end
 
         def create_config_from_templates(project_name)
-          template = "#{::Ti::Root_PATH}/ti/templates/defaults/config.erb"
+          template = "#{::Ti::ROOT_PATH}/ti/templates/defaults/config.erb"
           eruby = Erubis::Eruby.new(File.read(template))
-          create_new_file(name, eruby.result(:project_name => project_name)
+          create_new_file("config/config.rb", eruby.result(:project_name => project_name))
         end
 
 

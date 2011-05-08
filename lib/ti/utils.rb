@@ -26,7 +26,7 @@ module Utils
     end
   end
 
-  
+
   def remove_directories(*names)
     names.each do |name|
       log "Removing #{name} directory."
@@ -40,17 +40,26 @@ module Utils
       FileUtils.rm(location.join(file))
     end
   end
-  
+
   def log(msg)
     ::Ti::Logger.report(msg)
   end
-  
+
   def error(msg)
     ::Ti::Logger.error(msg)
   end
-  
+
   def base_location
     @location ||= Pathname.new(Dir.pwd)
   end
-  
+
+  def underscore(string)
+    string.gsub(/::/, '/').
+      gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
+      gsub(/([a-z\d])([A-Z])/,'\1_\2').
+      tr("-", "_").
+      downcase
+  end
+end
+
 end

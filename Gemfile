@@ -13,6 +13,7 @@ group :runtime do
   gem 'rocco',              "~> 0.6"
   gem 'rake',               "~> 0.8.7"
   gem 'erubis',             "~> 2.7.0"
+  gem 'betabuilder'
 end
 
 group :development do
