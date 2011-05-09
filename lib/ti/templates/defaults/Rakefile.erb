@@ -126,7 +126,7 @@ def compile_coffee
   puts "Compiling CoffeeScript".blue
   paths = `find app/<%= app_name_underscore %> -name '*.coffee'`.split("\n")
   compilation = (
-  system "coffee -p --join --bare #{paths.join(' ')} > Resources/<%= app_name_underscore%>" and
+  system "coffee -p --join --bare #{paths.join(' ')} > Resources/<%= app_name_underscore%>.js" and
   system "coffee -p --bare app/app.coffee > Resources/app.js"
   )
 
