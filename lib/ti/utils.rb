@@ -24,6 +24,8 @@ module Ti
     # TODO: Need to create a sample model file to read in for both the model and spec
     def create_model_file(name)
       log "Creating a new model and model spec for #{name}."
+      create_directories("app/models") unless File.directory?("app/models")
+      create_directories("spec/models") unless File.directory?("spec/models")
       create_new_file("app/models/#{name}.coffee")
       create_new_file("spec/models/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
     end
@@ -32,8 +34,10 @@ module Ti
     # TODO: Need to create a sample view file to read in for both the view and spec
     def create_view_file(name)
       log "Creating a new view and view spec for #{name}."
+      create_directories("app/views")   unless File.directory?("app/views")
+      create_directories("spec/views")  unless File.directory?("spec/views")
       create_new_file("app/views/#{name}.coffee")
-      create_new_file("specs/views/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
+      create_new_file("spec/views/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
     end
 
 

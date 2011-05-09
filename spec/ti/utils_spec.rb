@@ -47,6 +47,32 @@ describe "The utilities" do
     end
   end
   
+  context "Creating Model Files and their spec files" do
+    it "should create the model directory" do
+      Klass.create_model_file("user")
+      File.directory?(Pathname.new(Dir.pwd).join("app/models")).should be_true
+      File.exists?(Pathname.new(Dir.pwd).join("app/models/user.coffee")).should be_true
+      File.exists?(Pathname.new(Dir.pwd).join("spec/models/user_spec.coffee")).should be_true
+    end
+    
+    after(:all) do
+      remove_directories('app', 'spec/views', 'spec/models')
+    end
+  end
+  
+  context "Creating View Files and their spec files" do
+    it "should create the model directory" do
+      Klass.create_view_file("user")
+      File.directory?(Pathname.new(Dir.pwd).join("app/views")).should be_true
+      File.exists?(Pathname.new(Dir.pwd).join("app/views/user.coffee")).should be_true
+      File.exists?(Pathname.new(Dir.pwd).join("spec/views/user_spec.coffee")).should be_true
+    end
+    
+    after(:all) do
+      remove_directories('app', 'spec/views', 'spec/models')
+    end
+  end
+  
   context "Creating and deleting directories" do
     it "should create some directories" do
       Klass.create_directories("Dude", "looks", "like", "a", "lady")

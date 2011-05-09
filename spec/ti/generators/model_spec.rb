@@ -11,11 +11,15 @@ describe "Creating of a model" do
     end
     
     it "should have created the model coffee-script within the app/models directory" do
-      File.directory?("dailyfocus/app/models/user.coffee").should be_true
+      File.exists?("app/models/user.coffee").should be_true
+    end
+    
+    it "should have created the model coffee-script within the spec/models directory" do
+      File.exists?("spec/models/user_spec.coffee").should be_true
     end
   end
   
   after(:all) do
-    # remove_directories('dailyfocus')
+    remove_directories('dailyfocus', 'app', 'spec/models')
   end
 end

@@ -21,6 +21,6 @@ Just playing with some ideas.
 
 == Copyright
 
-Copyright (c) 2011 Robert R Evans. See LICENSE.txt for
+Copyright (c) 2011 Code Wranglers Inc, Robert R Evans. See LICENSE.txt for
 further details.
 
