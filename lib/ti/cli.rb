@@ -41,6 +41,12 @@ module Ti
     def scaffold(ti_type, domain, name)
       ::Ti::Generate::View.create(name, { :domain => domain, :ti_type => ti_type, :app_name => get_app_name, :name => name })
     end
-    
+
+    map %w(c) => 'controller'
+    desc "controller <name> <ti_type>", "generate a controller for Titanium"
+    def controller(name, ti_type)
+      ::Ti::Generate::Controller.create(name, { :ti_type => ti_type, :app_name => get_app_name, :name => name })
+    end
+
   end
 end

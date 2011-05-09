@@ -9,7 +9,13 @@ module Utils
 
   def create_with_template(name, contents={})
     log "Creating #{name} using templates"
-    template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
+
+    unless contents[:domain].nil?
+      template = "#{::Ti::ROOT_PATH}/ti/templates/controllers/#{contents[:ti_type]}.erb"
+    else
+      template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
+    end
+
     eruby = Erubis::Eruby.new(File.read(template))
 
     unless contents[:domain].nil?
