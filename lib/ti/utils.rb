@@ -13,6 +13,28 @@ module Ti
       File.open(location.join(name), 'w') { |f| f.write(eruby.result(contents)) }
     end
     
+    
+    
+    # FileUtils.mkdir_p("app/#{underscore(get_app_name)}/views/#{context[:domain]}")
+    # create_with_template("app/#{underscore(get_app_name)}/views/#{context[:domain].downcase}/#{name.downcase}.coffee", template, context)
+    
+    def create_with_template(name, template, contents={})
+      # log "Creating #{name} using templates"
+
+      # template = ''
+
+      # unless contents[:domain].nil?
+      #   template = "#{::Ti::ROOT_PATH}/ti/templates/controllers/#{contents[:ti_type]}.erb"
+      # else
+      #   template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
+      #   FileUtils.mkdir_p("app/#{underscore(get_app_name)}/views/#{contents[:domain]}")
+      # end
+
+      eruby = Erubis::Eruby.new(File.read(template))
+
+      create_new_file(name, eruby.result(contents))
+    end
+    
     # TODO: needed?
     # def create_model_template(name, contents={})
     #   log "Creating #{name} model using templates"
@@ -29,7 +51,7 @@ module Ti
       create_new_file("app/models/#{name}.coffee")
       create_new_file("spec/models/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
     end
-
+    
     
     # TODO: Need to create a sample view file to read in for both the view and spec
     def create_view_file(name)
@@ -39,8 +61,13 @@ module Ti
       create_new_file("app/views/#{name}.coffee")
       create_new_file("spec/views/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
     end
-
-
+    
+    def get_app_name
+      config = File.open("tiapp.xml")
+      doc = Nokogiri::XML(config)
+      config.close
+      doc.xpath('ti:app/name').text
+    end
     
     def remove_files(*files)
       files.each do |file|
