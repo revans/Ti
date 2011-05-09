@@ -1,3 +1,5 @@
+require 'nokogiri'
+
 module Utils
 
   def create_new_file(name, contents='')
@@ -9,6 +11,11 @@ module Utils
     log "Creating #{name} using templates"
     template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
     eruby = Erubis::Eruby.new(File.read(template))
+
+    unless contents[:domain].nil?
+      FileUtils.mkdir_p("app/#{underscore(get_app_name)}/views/#{contents[:domain]}")
+    end
+
     create_new_file(name, eruby.result(contents))
   end
 
@@ -47,6 +54,13 @@ module Utils
 
   def error(msg)
     ::Ti::Logger.error(msg)
+  end
+
+  def get_app_name
+    config = File.open("tiapp.xml")
+    doc = Nokogiri::XML(config)
+    config.close
+    doc.xpath('ti:app/name').text
   end
 
   def base_location

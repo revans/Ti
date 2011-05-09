@@ -63,7 +63,7 @@ module Ti
           create_directories('Resources', 'Resources/images', 'Resources/vendor', 
             'config', 
             'docs', 
-            'app/models', 'app/views', 'app/stylesheets', 
+            "app/#{underscore(@project_name)}/models", "app/#{underscore(@project_name)}/views", "app/#{underscore(@project_name)}/stylesheets", 
             'specs/models', 'specs/views') 
         end
         

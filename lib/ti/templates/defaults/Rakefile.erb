@@ -119,15 +119,15 @@ end
 
 def compile_sass
   puts "Compiling stylesheets".blue
-  compilation = system "sass --compass -C -t expand stylesheets/app.sass > Resources/app.jss"
+  compilation = system "sass --compass -C -t expand app/<%= app_name_underscore %>/stylesheets/app.sass > Resources/app.jss"
 end
 
 def compile_coffee
   puts "Compiling CoffeeScript".blue
-  paths = `find src/<%= app_name_underscore %> -name '*.coffee'`.split("\n")
+  paths = `find app/<%= app_name_underscore %> -name '*.coffee'`.split("\n")
   compilation = (
   system "coffee -p --join --bare #{paths.join(' ')} > Resources/<%= app_name_underscore%>" and
-  system "coffee -p --bare src/app.coffee > Resources/app.js"
+  system "coffee -p --bare app/app.coffee > Resources/app.js"
   )
 
   if compilation

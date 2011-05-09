@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
-  s.date = %q{2011-05-08}
+  s.date = %q{2011-05-09}
   s.default_executable = %q{ti}
   s.description = %q{Titanium Project Generator}
   s.email = %q{robert@codewranglers.org}
