@@ -7,7 +7,8 @@ require 'rbconfig'
 require 'colored'
 require 'rocco'
 require 'thor'
-
+require 'erubis'
+require 'rbconfig'
 
 module Ti
   ROOT_PATH         = Pathname(__FILE__).dirname.expand_path

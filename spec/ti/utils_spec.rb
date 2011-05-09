@@ -20,8 +20,7 @@ describe "The utilities" do
   
   context "Creating new files and deleting them" do
     it "should create a new file" do
-      Klass.create_new_file("DEMO", "HI")
-      File.read(Pathname.new(Dir.pwd).join("DEMO")).should == "HI"
+      Klass.create_new_file("DEMO")
       File.exists?(Pathname.new(Dir.pwd).join("DEMO")).should be_true
     end
     
@@ -91,5 +90,5 @@ describe "The utilities" do
       $stdout.string.should == "\e[1m\e[32mSuccess\e[0m\e[0m\n"
     end
   end
-  
+    
 end
