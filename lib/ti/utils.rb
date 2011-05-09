@@ -7,33 +7,23 @@ module Ti
       File.open(location.join(name), 'w') { |f| f.write(contents) }
     end
   
-    def create_view_template(name, contents={})
-      log "Creating #{name} view using templates"
-      eruby = Erubis::Eruby.new( File.read(templates("app/views/#{contents[:ti_type]}.erb")) )
-      File.open(location.join(name), 'w') { |f| f.write(eruby.result(contents)) }
+
+    def create_view_template(name, context, contents = '')
+      log "Creating #{name} view using a template."
+      template = templates("app/views/#{context[:ti_type]}.erb")
+      case 
+      when context[:ti_type]
+        payload   = Pathname.new("app/views/#{context[:domain].downcase}")
+      else
+        payload   = Pathname.new("app/#{underscore(get_app_name)}/views/#{context[:domain]}")
+        contents  = Erubis::Eruby.new(File.read(template)) if template
+      end
+      
+      create_directories(payload) unless File.directory?(payload)
+      filename = payload.join("#{name.downcase}.coffee")
+      File.open(location.join(filename), 'w') { |f| f.write(eruby.result(contents)) }
     end
-    
-    
-    
-    # FileUtils.mkdir_p("app/#{underscore(get_app_name)}/views/#{context[:domain]}")
-    # create_with_template("app/#{underscore(get_app_name)}/views/#{context[:domain].downcase}/#{name.downcase}.coffee", template, context)
-    
-    def create_with_template(name, template, contents={})
-      # log "Creating #{name} using templates"
 
-      # template = ''
-
-      # unless contents[:domain].nil?
-      #   template = "#{::Ti::ROOT_PATH}/ti/templates/controllers/#{contents[:ti_type]}.erb"
-      # else
-      #   template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
-      #   FileUtils.mkdir_p("app/#{underscore(get_app_name)}/views/#{contents[:domain]}")
-      # end
-
-      eruby = Erubis::Eruby.new(File.read(template))
-
-      create_new_file(name, eruby.result(contents))
-    end
     
     # TODO: needed?
     # def create_model_template(name, contents={})
