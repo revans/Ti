@@ -7,20 +7,19 @@ module Utils
     File.open(location.join(name), 'w') { |f| f.write(contents) }
   end
 
-  def create_with_template(name, contents={})
-    log "Creating #{name} using templates"
+  def create_with_template(name, template, contents={})
+    # log "Creating #{name} using templates"
 
-    unless contents[:domain].nil?
-      template = "#{::Ti::ROOT_PATH}/ti/templates/controllers/#{contents[:ti_type]}.erb"
-    else
-      template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
-    end
+    # template = ''
+
+    # unless contents[:domain].nil?
+    #   template = "#{::Ti::ROOT_PATH}/ti/templates/controllers/#{contents[:ti_type]}.erb"
+    # else
+    #   template = "#{::Ti::ROOT_PATH}/ti/templates/views/#{contents[:ti_type]}.erb"
+    #   FileUtils.mkdir_p("app/#{underscore(get_app_name)}/views/#{contents[:domain]}")
+    # end
 
     eruby = Erubis::Eruby.new(File.read(template))
-
-    unless contents[:domain].nil?
-      FileUtils.mkdir_p("app/#{underscore(get_app_name)}/views/#{contents[:domain]}")
-    end
 
     create_new_file(name, eruby.result(contents))
   end

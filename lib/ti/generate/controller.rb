@@ -5,7 +5,9 @@ module Ti
         include Utils
 
         def create(name, context={})
-          create_with_template("app/#{underscore(get_app_name)}/views/#{name}.coffee", context)
+          log "Creating #{name} controller"
+          template = "#{::Ti::ROOT_PATH}/ti/templates/controllers/#{context[:ti_type]}.erb"
+          create_with_template("app/#{underscore(get_app_name)}/views/#{name.downcase}.coffee", template, context)
         end
 
         def location
