@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
-  s.date = %q{2011-05-09}
+  s.date = %q{2011-05-10}
   s.default_executable = %q{ti}
   s.description = %q{Titanium Project Generator}
   s.email = %q{robert@codewranglers.org}
@@ -42,7 +42,9 @@ Gem::Specification.new do |s|
     "lib/ti/templates/app/app.coffee",
     "lib/ti/templates/config",
     "lib/ti/templates/controllers/window.erb",
+    "lib/ti/templates/defaults/Guardfile.erb",
     "lib/ti/templates/defaults/Rakefile.erb",
+    "lib/ti/templates/defaults/Readme.mkd.erb",
     "lib/ti/templates/defaults/config.erb",
     "lib/ti/templates/gitignore",
     "lib/ti/templates/guardfile",
