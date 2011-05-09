@@ -33,13 +33,13 @@ module Ti
           touch('Readme.mkd')
           # touch('specs/spec_helper.coffee') # TODO: Necessary? If so, what is in it?
 
-          create_new_file("app/app.coffee",     File.read(::Ti::ROOT_PATH.join('ti/templates/app/app.coffee')))
-          create_new_file(".gitignore",         File.read(::Ti::ROOT_PATH.join('ti/templates/gitignore')))
-          create_new_file("config/config.rb",   File.read(::Ti::ROOT_PATH.join('ti/templates/config')))
-          create_new_file("Rakefile",           File.read(::Ti::ROOT_PATH.join('ti/templates/rakefile')))
-          create_new_file("Readme.mkd",         File.read(::Ti::ROOT_PATH.join('ti/templates/readme')))
-          create_new_file("Guardfile",          File.read(::Ti::ROOT_PATH.join('ti/templates/guardfile')))
-          create_new_file("specs/app_spec.coffee",          File.read(::Ti::ROOT_PATH.join('ti/templates/specs/app_spec.coffee')))
+          create_new_file("app/app.coffee",         templates('app/app.coffee'))
+          create_new_file(".gitignore",             templates('gitignore'))
+          create_new_file("config/config.rb",       templates('config'))
+          create_new_file("Rakefile",               templates('rakefile'))
+          create_new_file("Readme.mkd",             templates('readme'))
+          create_new_file("Guardfile",              templates('guardfile'))
+          create_new_file("specs/app_spec.coffee",  templates('specs/app_spec.coffee'))
           
           # load default images
           FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
@@ -63,9 +63,19 @@ module Ti
           base_location.join(@project_name)
         end
 
-        # TODO: Need to look at what system this is being ran on. If OSX check if titanium was installed in the $HOME dir.
+
         def generate_titanium_project
-          "#{::Ti::OSX_TITANIUM} create --name=#{@project_name} --platform=#{@device_platform} --id=#{@app_id}"
+          titanium_platform = case CONFIG['host_os']
+          when /linux/i
+            ::Ti::LINUX_TITANIUM
+          when /darwin/i
+            File.exists?(::Ti::OSX_TITANIUM) ? ::Ti::OSX_TITANIUM : ::Ti::OSX_TITANIUM_HOME
+          else
+            error("Currently, your OS (#{CONFIG['host_os']}) is not supported.")
+            exit(0)
+          end
+          
+          "#{titanium_platform} create --name=#{@project_name} --platform=#{@device_platform} --id=#{@app_id}"
         end
 
       end

@@ -4,15 +4,10 @@ module Ti
       class << self
         include ::Ti::Utils
         
-        def create(name, options={})
-          create_new_file("app/views/#{name}.coffee")
-          create_new_file("specs/views/#{name}_spec.coffee", File.read(::Ti::ROOT_PATH.join("ti/templates/specs/app_spec.coffee")))
+        def create(name)
+          create_view_file(name)
         end
-        
-        def location
-          base_location
-        end
-        
+
       end
     end
   end
