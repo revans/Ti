@@ -34,6 +34,12 @@ module Ti
             f.write(eruby.result(:project_name => project_name)) 
           end
         end
+        
+        def create_defaults_with_template(name, contents={})
+          template = templates("defaults/#{name}.erb")
+          eruby = Erubis::Eruby.new(File.read(template))
+          create_new_file(name, eruby.result(contents))
+        end
 
         def create_rakefile_from_template(project_name)
           eruby = Erubis::Eruby.new( File.read(templates("defaults/Rakefile.erb")) )
@@ -60,6 +66,10 @@ module Ti
           
           create_config_from_templates(@project_name)
           create_rakefile_from_template(@project_name)
+          create_config_from_templates(@project_name)
+          create_defaults_with_template("Rakefile", {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
+          create_defaults_with_template("Readme.mkd", {:app_name => @project_name})
+          create_defaults_with_template("Guardfile", {:app_name => underscore(@project_name)})
           
           # load default images
           FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
