@@ -26,6 +26,7 @@ module Ti
           end
           
           contents  = Erubis::Eruby.new(File.read(template)).result if template
+          
           create_directories(payload)         unless File.directory?(payload)
           create_directories("spec/views")    unless File.directory?("spec/views")
           
