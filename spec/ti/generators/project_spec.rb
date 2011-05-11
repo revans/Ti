@@ -28,7 +28,7 @@ describe "Creating of a new Ti Project" do
     end
     
     it "should have a specs directory" do
-      File.directory?("dailyfocus/specs").should be_true
+      File.directory?("dailyfocus/spec").should be_true
     end
     
     it "should have a tmp directory" do
@@ -102,15 +102,15 @@ describe "Creating of a new Ti Project" do
   
   context "Inside the specs directory" do
     it "should have created the app_spec.coffee file" do
-      File.exists?("dailyfocus/specs/app_spec.coffee").should be_true
+      File.exists?("dailyfocus/spec/app_spec.coffee").should be_true
     end
     
     it "should have created the models directory" do
-      File.directory?("dailyfocus/specs/models").should be_true
+      File.directory?("dailyfocus/spec/models").should be_true
     end
     
     it "should have created the views directory" do
-      File.directory?("dailyfocus/specs/views").should be_true
+      File.directory?("dailyfocus/spec/views").should be_true
     end
     
   end

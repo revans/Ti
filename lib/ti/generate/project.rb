@@ -62,7 +62,7 @@ module Ti
 
           create_new_file("app/app.coffee",         templates('app/app.coffee'))
           create_new_file(".gitignore",             templates('gitignore'))
-          create_new_file("specs/app_spec.coffee",  templates('specs/app_spec.coffee'))
+          create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
           
           
           # TODO: these can be refactored
