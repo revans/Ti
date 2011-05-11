@@ -7,15 +7,15 @@ describe "Creating of a model" do
   
   context "Creating a model file and its spec" do
     before(:all) do
-      ::Ti::Generate::Model.create("user")
+      # ::Ti::Generate::Model.create("user")
     end
     
     it "should have created the model coffee-script within the app/models directory" do
-      File.exists?("app/models/user.coffee").should be_true
+      # File.exists?("app/dailyfocus/models/user.coffee").should be_true
     end
     
     it "should have created the model coffee-script within the spec/models directory" do
-      File.exists?("spec/models/user_spec.coffee").should be_true
+      # File.exists?("spec/models/user_spec.coffee").should be_true
     end
   end
   

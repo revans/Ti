@@ -38,7 +38,11 @@ module Ti
         def create_defaults_with_template(name, contents={})
           template = templates("defaults/#{name}.erb")
           eruby = Erubis::Eruby.new(File.read(template))
-          create_new_file(name, eruby.result(contents))
+
+          File.open(location.join(name), 'w') do |f| 
+            f.write(eruby.result(contents))
+          end
+
         end
 
         def create_rakefile_from_template(project_name)
@@ -58,18 +62,17 @@ module Ti
 
           create_new_file("app/app.coffee",         templates('app/app.coffee'))
           create_new_file(".gitignore",             templates('gitignore'))
-          create_new_file("config/config.rb",       templates('config'))
-          create_new_file("Rakefile",               templates('rakefile'))
-          create_new_file("Readme.mkd",             templates('readme'))
-          create_new_file("Guardfile",              templates('guardfile'))
           create_new_file("specs/app_spec.coffee",  templates('specs/app_spec.coffee'))
           
-          create_config_from_templates(@project_name)
-          create_rakefile_from_template(@project_name)
+          
+          
           create_config_from_templates(@project_name)
           create_defaults_with_template("Rakefile", {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
           create_defaults_with_template("Readme.mkd", {:app_name => @project_name})
           create_defaults_with_template("Guardfile", {:app_name => underscore(@project_name)})
+          
+          
+          
           
           # load default images
           FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
@@ -81,7 +84,9 @@ module Ti
           create_directories('Resources', 'Resources/images', 'Resources/vendor', 
             'config', 
             'docs', 
-            "app/#{underscore(@project_name)}/models", "app/#{underscore(@project_name)}/views", "app/#{underscore(@project_name)}/stylesheets", 
+            "app/#{underscore(@project_name)}/models", 
+            "app/#{underscore(@project_name)}/views", 
+            "app/#{underscore(@project_name)}/stylesheets", 
             'specs/models', 'specs/views') 
         end
         

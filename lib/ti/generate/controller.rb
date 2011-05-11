@@ -10,10 +10,6 @@ module Ti
           create_with_template("app/#{underscore(get_app_name)}/views/#{name.downcase}.coffee", template, context)
         end
 
-        def location
-          base_location
-        end
-
       end
     end
   end

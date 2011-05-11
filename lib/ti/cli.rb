@@ -35,26 +35,37 @@ module Ti
     end
     
     map %w(g) => 'generate'
-    desc "generate <model/view> <name>", "generate a new model or view with jasmine specs."
+    desc "generate <model/controller/view> <name>", "generate a new model or view with jasmine specs."
     def generate(type, name)
       case 
       when type =~ /model/i
         ::Ti::Generate::Model.create(name)
       when type =~ /view/i
         ::Ti::Generate::View.create(name)
+      when type =~ /controller/i
+        ::Ti::Generate::Controller.create(name)
       end
     end
+
+
 
     map %w(s) => 'scaffold'
     desc "scaffold <window/tabgroup/view> <domain> <name>", "generate a scaffold for Titanium elements."
     def scaffold(ti_type, domain, name)
-      ::Ti::Generate::View.create(name, { :domain => domain, :ti_type => ti_type, :app_name => get_app_name, :name => name })
+      ::Ti::Generate::View.create(name, { 
+        :domain   => domain, 
+        :ti_type  => ti_type, 
+        :app_name => get_app_name, 
+        :name     => name })
     end
 
     map %w(c) => 'controller'
     desc "controller <name> <ti_type>", "generate a controller for Titanium"
     def controller(name, ti_type)
-      ::Ti::Generate::Controller.create(name, { :ti_type => ti_type, :app_name => get_app_name, :name => name })
+      ::Ti::Generate::Controller.create(name, { 
+          :ti_type  => ti_type, 
+          :app_name => get_app_name, 
+          :name     => name })
     end
 
   end

@@ -6,6 +6,7 @@ describe "Creating of a new Ti Project" do
   end
   
   context "Directories should be created" do
+    
     it "should have created the project" do
       File.directory?("dailyfocus").should be_true
     end
@@ -63,15 +64,15 @@ describe "Creating of a new Ti Project" do
     end
     
     it "should have created the models directory" do
-      File.directory?("dailyfocus/app/models").should be_true
+      File.directory?("dailyfocus/app/dailyfocus/models").should be_true
     end
     
     it "should have created the stylesheets directory" do
-      File.directory?("dailyfocus/app/stylesheets").should be_true
+      File.directory?("dailyfocus/app/dailyfocus/stylesheets").should be_true
     end
     
     it "should have created the views directory" do
-      File.directory?("dailyfocus/app/views").should be_true
+      File.directory?("dailyfocus/app/dailyfocus/views").should be_true
     end
   end
   

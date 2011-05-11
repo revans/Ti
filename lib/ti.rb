@@ -9,6 +9,7 @@ require 'rocco'
 require 'thor'
 require 'erubis'
 require 'rbconfig'
+require 'nokogiri'
 
 module Ti
   ROOT_PATH         = Pathname(__FILE__).dirname.expand_path
