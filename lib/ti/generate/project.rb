@@ -87,7 +87,7 @@ module Ti
             "app/#{underscore(@project_name)}/models", 
             "app/#{underscore(@project_name)}/views", 
             "app/#{underscore(@project_name)}/stylesheets", 
-            'specs/models', 'specs/views') 
+            'spec/models', 'spec/views') 
         end
         
         def remove_old_files

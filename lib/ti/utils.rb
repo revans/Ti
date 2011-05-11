@@ -6,61 +6,6 @@ module Ti
       contents = file.nil? ? '' : File.read(file)
       File.open(location.join(name), 'w') { |f| f.write(contents) }
     end
-  
-  
-    def create_view_template(name, context, contents = '')
-      log "Creating #{name} view using a template."      
-      view_directory = "app/#{underscore(get_app_name)}/views"
-  
-      case 
-      when context[:ti_type]
-        template  = templates("app/views/#{context[:ti_type]}.erb")
-        payload   = Pathname.new("#{view_directory}/#{context[:domain].downcase}")
-      else
-        template  = templates("app/views/view.erb")
-        payload   = Pathname.new("#{view_directory}/#{context[:domain]}")
-        contents  = Erubis::Eruby.new(File.read(template)).result if template
-      end
-      
-      create_directories(payload) unless File.directory?(payload)
-      filename = payload.join("#{name.downcase}.coffee")
-      File.open(location.join(filename), 'w') { |f| f.write(contents) }
-      
-      create_directories("spec/views")  unless File.directory?("spec/views")
-      create_new_file("spec/views/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
-    end
-
-    
-    # TODO: needed?
-    # def create_model_template(name, contents={})
-    #   log "Creating #{name} model using templates"
-    #   eruby = Erubis::Eruby.new( File.read(templates("app/models/model_template.erb")) )
-    #   File.open(location.join(name), 'w') { |f| f.write(eruby.result(contents)) }
-    # end
-
-    
-    # TODO: Need to create a sample model file to read in for both the model and spec
-    def create_model_file(name)
-      log "Creating a new model and model spec for #{name}."
-      model_directory = "app/#{underscore(get_app_name)}/models"
-      
-      create_directories(model_directory) unless File.directory?(model_directory)
-      create_directories("spec/models")   unless File.directory?("spec/models")
-      
-      create_new_file("#{model_directory}/#{name}.coffee")
-      create_new_file("spec/models/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
-    end
-    
-    
-    # TODO: Need to create a sample view file to read in for both the view and spec
-    def create_view_file(name)
-      log "Creating a new view and view spec for #{name}."
-      view_directory = "app/#{underscore(get_app_name)}/views"
-      create_directories(view_directory)   unless File.directory?(view_directory)
-      create_directories("spec/views")  unless File.directory?("spec/views")
-      create_new_file("#{view_directory}/#{name}.coffee")
-      create_new_file("spec/views/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
-    end
     
     def get_app_name
       config  = File.open("tiapp.xml")
