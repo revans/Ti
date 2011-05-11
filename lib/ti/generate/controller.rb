@@ -16,13 +16,12 @@ module Ti
           case context[:ti_type]
           when 'window'
             template  = templates("app/controllers/window.erb")
-            payload   = Pathname.new("#{controller_directory}/#{context[:domain].downcase}")
           else
             template  = templates("app/controllers/controller.erb")
-            payload   = Pathname.new("#{controller_directory}/#{context[:domain]}")
           end
-          
-          contents  = Erubis::Eruby.new(File.read(template)).result if template
+
+          payload   = Pathname.new("#{controller_directory}/#{context[:domain].downcase}")
+          contents  = Erubis::Eruby.new(File.read(template)).result(context) if template
           create_directories(payload)             unless File.directory?(payload)
           create_directories("spec/controllers")  unless File.directory?("spec/controllers")
           

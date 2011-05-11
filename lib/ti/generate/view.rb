@@ -12,20 +12,18 @@ module Ti
         def create_view_template(name, context)
           log "Creating #{name} view using a template."      
           view_directory = "app/#{underscore(get_app_name)}/views"
-
+          
           case context[:ti_type]
           when  'window'
             template  = templates("app/views/window.erb")
-            payload   = Pathname.new("#{view_directory}/#{context[:domain].downcase}")
           when 'tabgroup'
             template  = templates("app/views/tabgroup.erb")
-            payload   = Pathname.new("#{view_directory}/#{context[:domain].downcase}")
           else
             template  = templates("app/views/view.erb")
-            payload   = Pathname.new("#{view_directory}/#{context[:domain]}")
           end
           
-          contents  = Erubis::Eruby.new(File.read(template)).result if template
+          payload   = Pathname.new("#{view_directory}/#{context[:domain].downcase}")
+          contents  = Erubis::Eruby.new(File.read(template)).result(context) if template
           
           create_directories(payload)         unless File.directory?(payload)
           create_directories("spec/views")    unless File.directory?("spec/views")
