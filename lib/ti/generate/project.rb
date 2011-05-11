@@ -65,7 +65,7 @@ module Ti
           create_new_file("specs/app_spec.coffee",  templates('specs/app_spec.coffee'))
           
           
-          
+          # TODO: these can be refactored
           create_config_from_templates(@project_name)
           create_defaults_with_template("Rakefile", {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
           create_defaults_with_template("Readme.mkd", {:app_name => @project_name})
