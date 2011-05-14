@@ -22,7 +22,7 @@ module Ti
             template  = templates("app/views/view.erb")
           end
           
-          payload   = Pathname.new("#{view_directory}/#{context[:domain].downcase}")
+          payload   = Pathname.new("#{view_directory}/#{(context[:domain] || '').downcase}")
           contents  = Erubis::Eruby.new(File.read(template)).result(context) if template
           
           create_directories(payload)         unless File.directory?(payload)
