@@ -13,14 +13,17 @@ module Ti
           log "Creating #{name} controller using a template."      
           controller_directory = "app/#{underscore(get_app_name)}/controllers"
 
-          case context[:ti_type]
-          when 'window'
-            template  = templates("app/controllers/window.erb")
-          else
-            template  = templates("app/controllers/controller.erb")
-          end
+          # TODO: I don't think this is needed
+          # case context[:ti_type]
+          # when 'window'
+          #   template  = templates("app/controllers/window.erb")
+          # else
+          #   template  = templates("app/controllers/controller.erb")
+          # end
 
-          payload   = Pathname.new("#{controller_directory}/#{context[:domain].downcase}")
+          template  = templates("app/controllers/controller.erb")
+
+          payload   = Pathname.new("#{controller_directory}")
           contents  = Erubis::Eruby.new(File.read(template)).result(context) if template
           create_directories(payload)             unless File.directory?(payload)
           create_directories("spec/controllers")  unless File.directory?("spec/controllers")

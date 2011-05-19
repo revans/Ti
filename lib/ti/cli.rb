@@ -60,10 +60,9 @@ module Ti
     end
 
     map %w(c) => 'controller'
-    desc "controller <window> <name>", "generate a controller for Titanium"
-    def controller(ti_type, name)
-      ::Ti::Generate::Controller.create(name, { 
-          :ti_type  => ti_type, 
+    desc "controller <name>", "generate a controller for Titanium"
+    def controller(name)
+      ::Ti::Generate::Controller.create(name, {
           :app_name => get_app_name, 
           :name     => name })
     end
