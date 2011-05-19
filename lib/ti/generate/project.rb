@@ -60,7 +60,15 @@ module Ti
           touch('Readme.mkd')
           # touch('specs/spec_helper.coffee') # TODO: Necessary? If so, what is in it?
 
-          create_new_file("app/app.coffee",         templates('app/app.coffee'))
+          # create_new_file("app/app.coffee",         templates('app/app.coffee'))
+          project_template = templates('app/app.coffee.erb')
+          project_contents = Erubis::Eruby.new(File.read(project_template)).result(:app_name => @project_name, :app_name_underscore => underscore(@project_name)) if project_template
+          File.open(location.join('app/app.coffee'), 'w') { |f| f.write(project_contents) }
+
+          app_project_template = templates('app/app_project.coffee.erb')
+          app_project_contents = Erubis::Eruby.new(File.read(app_project_template)).result(:app_name => @project_name) if app_project_template
+          File.open(location.join("app/#{underscore(@project_name)}/app.coffee"), 'w') { |f| f.write(app_project_contents)}
+
           create_new_file(".gitignore",             templates('gitignore'))
           create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
           

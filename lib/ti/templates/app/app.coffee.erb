@@ -1,0 +1,11 @@
+# This file is the entry point for the application. It sets up the four main
+# tab windows.
+# The `<%= app_name %>` object provides common access to app data, API wrapper and UI utilities
+
+# ## ShwinkersMobile ##
+<%= app_name %> =
+  Views:
+
+Ti.include('<%= app_name_underscore %>.js')
+
+<%= app_name %>.App.init()

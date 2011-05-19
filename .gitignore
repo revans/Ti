@@ -41,3 +41,6 @@ pkg
 #
 # For vim:
 *.swp
+
+# For SASS
+.sass-cache
