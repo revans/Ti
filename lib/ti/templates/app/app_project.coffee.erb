@@ -64,8 +64,8 @@
     <%= app_name %>.App.tabGroup = Ti.UI.createTabGroup()
 
     # ### Set up the **sampleWindow**
-    sampleWindow = <%= app_name %>.Views.createSampleWindow
-      title: 'sample'
+    sampleWindow = <%= app_name %>.Views.Sample.createMainWindow
+      title: 'Sample'
       id: 'sampleWindow'
 
       # Titanium magic to handle orientation changes
@@ -86,7 +86,7 @@
     <%= app_name %>.App.tabGroup.addTab <%= app_name %>.App.sampleTab
 
     # ### Set up the ***Settings Window***
-    settingsWindow = <%= app_name %>.Views.createSettingsWindow
+    settingsWindow = <%= app_name %>.Views.Settings.createMainWindow
       title: 'Settings'
       id: 'settingsWindow'
 

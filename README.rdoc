@@ -7,8 +7,49 @@ Just playing with some ideas.
 == Requirements
  
 * ruby 1.9.2
+* Titanium Developer Mobile SDK 1.6.2
 * CoffeeScript
 * libffi `brew install libffi`
+
+== Sample App
+
+Install the gem
+
+` gem install ti `
+
+Create a new Project
+
+` ti new HelloTi com.yourdomain.helloti iphone `
+
+Create your views
+
+`
+  ti s window Sample main  
+  ti s window Settings main  
+`
+
+Update your `app/app.coffee` to define the newly created Views
+
+`
+HelloTi =
+  Views:
+    Sample: {}
+    Settings: {}
+`
+
+Update your `app/hello_ti/stylesheets/app.sass` to include the generated sass
+
+`
+@import 'sample'
+@import 'settings'
+`
+
+Run it!
+
+` rake `
+
+You can now start adding components. Enjoy!
+
 
 == Contributing to Ti
  
