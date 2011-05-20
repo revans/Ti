@@ -32,6 +32,7 @@ module Ti
           File.open(location.join(filename), 'w') { |f| f.write(contents) }
 
           create_new_file("spec/views/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
+          create_new_file("app/#{uderscore(get_app_name)}/stylesheets/_#{name}.sass", templates("app/stylesheets/sample.sass"))
         end
 
       end
