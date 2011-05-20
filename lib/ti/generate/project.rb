@@ -58,9 +58,7 @@ module Ti
         def generate_files
           create_project_directory
           touch('Readme.mkd')
-          # touch('specs/spec_helper.coffee') # TODO: Necessary? If so, what is in it?
 
-          # create_new_file("app/app.coffee",         templates('app/app.coffee'))
           project_template = templates('app/app.coffee.erb')
           project_contents = Erubis::Eruby.new(File.read(project_template)).result(:app_name => @project_name, :app_name_underscore => underscore(@project_name)) if project_template
           File.open(location.join('app/app.coffee'), 'w') { |f| f.write(project_contents) }
@@ -71,16 +69,13 @@ module Ti
 
           create_new_file(".gitignore",             templates('gitignore'))
           create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
+          create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
           
-          
-          # TODO: these can be refactored
           create_config_from_templates(@project_name)
-          create_defaults_with_template("Rakefile", {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
-          create_defaults_with_template("Readme.mkd", {:app_name => @project_name})
-          create_defaults_with_template("Guardfile", {:app_name => underscore(@project_name)})
-          
-          
-          
+          default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile']
+          default_templates.each do |deftemp|
+            create_defaults_with_template(deftemp, {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
+          end
           
           # load default images
           FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
