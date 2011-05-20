@@ -15,38 +15,38 @@ Just playing with some ideas.
 
 Install the gem
 
-` gem install ti `
+  gem install ti
+
 
 Create a new Project
 
-` ti new HelloTi com.yourdomain.helloti iphone `
+  ti new HelloTi com.yourdomain.helloti iphone `
+
 
 Create your views
 
-`
   ti s window Sample main  
   ti s window Settings main  
-`
+
 
 Update your `app/app.coffee` to define the newly created Views
 
-`
-HelloTi =
-  Views:
-    Sample: {}
-    Settings: {}
-`
+  HelloTi =  
+    Views:  
+      Sample: {}  
+      Settings: {}  
+
 
 Update your `app/hello_ti/stylesheets/app.sass` to include the generated sass
 
-`
-@import 'sample'
-@import 'settings'
-`
+  @import 'sample'  
+  @import 'settings'  
+
 
 Run it!
 
-` rake `
+  rake  
+
 
 You can now start adding components. Enjoy!
 
