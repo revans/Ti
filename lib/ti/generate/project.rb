@@ -72,7 +72,7 @@ module Ti
           create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
           
           create_config_from_templates(@project_name)
-          default_templates = %w{'Rakefile', 'Readme.mkd', 'Guardfile'}
+          default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile']
           default_templates.each do |deftemp|
             create_defaults_with_template(deftemp, {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
           end
