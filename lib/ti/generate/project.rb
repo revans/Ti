@@ -28,73 +28,23 @@ module Ti
         end
         
 
-        # def create_config_from_templates(project_name)
-        #   eruby = Erubis::Eruby.new( File.read(templates("defaults/config.erb")) )
-        #   File.open(location.join("config/config.rb"), 'w') do |f| 
-        #     f.write(eruby.result(:app_name => project_name)) 
-        #   end
-        # end
-        
-        # def create_with_template(name, template_location, contents={})
-        #   template  = templates(template_location)
-        #   eruby     = Erubis::Eruby.new(File.read(template))
-        #   File.open(location.join(name), 'w') { |f| f.write(eruby.result(contents))}
-        # end
-        
-        def create_defaults_with_template(name, contents={})
-          template = templates("defaults/#{name}.erb")
-          eruby = Erubis::Eruby.new(File.read(template))
-
-          File.open(location.join(name), 'w') do |f| 
-            f.write(eruby.result(contents))
-          end
-        end
-        
-
-        def create_rakefile_from_template(project_name)
-          eruby = Erubis::Eruby.new( File.read(templates("defaults/Rakefile.erb")) )
-          File.open(location.join("Rakefile"), 'w') do |f| 
-            f.write( eruby.result({
-                :app_name             => project_name, 
-                :app_name_underscore  => underscore(project_name)
-            })) 
-          end
-        end
-
         def generate_files
           create_project_directory
           touch('Readme.mkd')
-
-          project_template = templates('app/app.coffee.erb')
-          project_contents = Erubis::Eruby.new(File.read(project_template)).result(:app_name => @project_name, :app_name_underscore => underscore(@project_name)) if project_template
-          File.open(location.join('app/app.coffee'), 'w') { |f| f.write(project_contents) }
-
-          app_project_template = templates('app/app_project.coffee.erb')
-          app_project_contents = Erubis::Eruby.new(File.read(app_project_template)).result(:app_name => @project_name) if app_project_template
-          File.open(location.join("app/#{underscore(@project_name)}/app.coffee"), 'w') { |f| f.write(app_project_contents)}
+          full_app_hash     = {:app_name => @project_name, :app_name_underscore => underscore(@project_name)}
+          create_with_template('app/app.coffee', 'app/app.coffee', full_app_hash)
+          create_with_template("app/#{underscore(@project_name)}/app.coffee", 'app/app_project.coffee', full_app_hash)
 
           create_new_file(".gitignore",             templates('gitignore'))
           create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
           create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
           
-          # create_config_from_templates(@project_name)
-          
-          
-          create_with_template('config/config.rb', 'defaults', {:app_name => @project_name})
-          
-          
-          # def create_config_from_templates(project_name)
-          #   eruby = Erubis::Eruby.new( File.read(templates("defaults/config.erb")) )
-          #   File.open(location.join("config/config.rb"), 'w') do |f| 
-          #     f.write(eruby.result(:project_name => project_name)) 
-          #   end
-          # end
-          
-          
-          
+
+          create_with_template('config/config.rb', 'defaults/config', full_app_hash)
+
           default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile']
-          default_templates.each do |deftemp|
-            create_with_template(deftemp, 'defaults', {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
+          default_templates.each do |tempfile|
+            create_with_template(tempfile, "defaults/#{tempfile}", full_app_hash)
           end
           
           # load default images

@@ -47,7 +47,7 @@ module Ti
 
     
     def create_with_template(name, template_location, contents={})
-      template    = templates("#{template_location}/#{File.basename(name)}.erb")
+      template    = templates("#{template_location}.erb")
       eruby       = Erubis::Eruby.new(File.read(template))
       File.open(location.join(name.gsub(/^\//, '')), 'w') { |f| f.write(eruby.result(contents))}
     end
