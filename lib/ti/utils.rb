@@ -53,8 +53,9 @@ module Ti
     end
     
     
+    
     def templates(path)
-      ::Ti::ROOT_PATH.join('ti/templates').join(path)
+      ::Ti.root.join('ti/templates').join(path)
     end
     
     

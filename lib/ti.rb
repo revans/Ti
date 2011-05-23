@@ -35,4 +35,8 @@ module Ti
     autoload  :Controller,  "ti/generate/controller.rb"
   end
   
+  def self.root
+    @root ||= Pathname(__FILE__).dirname.expand_path
+  end
+  
 end
