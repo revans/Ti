@@ -27,7 +27,7 @@ module Ti
           FileUtils.cp(location.join("Resources/KS_nav_views.png"), "/tmp/")
         end
         
-
+        # TODO: Should be in the Utils and be a generfic template creator
         def create_config_from_templates(project_name)
           eruby = Erubis::Eruby.new( File.read(templates("defaults/config.erb")) )
           File.open(location.join("config/config.rb"), 'w') do |f| 
@@ -35,6 +35,7 @@ module Ti
           end
         end
         
+        # TODO: Should be in the Utils and be a generfic template creator
         def create_defaults_with_template(name, contents={})
           template = templates("defaults/#{name}.erb")
           eruby = Erubis::Eruby.new(File.read(template))
@@ -45,6 +46,7 @@ module Ti
 
         end
 
+        # TODO: Should be in the Utils and be a generfic template creator
         def create_rakefile_from_template(project_name)
           eruby = Erubis::Eruby.new( File.read(templates("defaults/Rakefile.erb")) )
           File.open(location.join("Rakefile"), 'w') do |f| 
@@ -60,19 +62,24 @@ module Ti
           touch('Readme.mkd')
 
           project_template = templates('app/app.coffee.erb')
+          
           project_contents = Erubis::Eruby.new(File.read(project_template)).result(:app_name => @project_name, :app_name_underscore => underscore(@project_name)) if project_template
+          
           File.open(location.join('app/app.coffee'), 'w') { |f| f.write(project_contents) }
 
           app_project_template = templates('app/app_project.coffee.erb')
+          
           app_project_contents = Erubis::Eruby.new(File.read(app_project_template)).result(:app_name => @project_name) if app_project_template
           File.open(location.join("app/#{underscore(@project_name)}/app.coffee"), 'w') { |f| f.write(app_project_contents)}
+          
 
           create_new_file(".gitignore",             templates('gitignore'))
           create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
           create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
           
           create_config_from_templates(@project_name)
-          default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile']
+          
+          default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile', 'Coffeefile']
           default_templates.each do |deftemp|
             create_defaults_with_template(deftemp, {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
           end
