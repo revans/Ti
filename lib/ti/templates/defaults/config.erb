@@ -5,7 +5,7 @@ module Config
   doc     = Nokogiri::XML(config)
   config.close
 
-  PROJECT_NAME        = "<%= project_name %>"
+  PROJECT_NAME        = "<%= app_name %>"
   PROJECT_ROOT        = File.dirname(__FILE__)
   PROJECT_VERSION     = "0.0.1"
 

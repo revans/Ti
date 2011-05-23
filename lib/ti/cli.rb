@@ -66,6 +66,11 @@ module Ti
           :app_name => get_app_name, 
           :name     => name })
     end
+    
+    desc "compile", "compiles all CoffeeScripts"
+    def compile
+      ::Ti::Compiler::CoffeeScripts.compile_all!
+    end
 
   end
 end
