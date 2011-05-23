@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version       = Ti::VERSION
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
-  s.date          = %q{2011-05-04}
+  s.date          = %q{2011-05-23}
   s.email         = %q{robert@codewranglers.org}
   s.homepage      = %q{http://github.com/revans/ti}
   s.summary       = %q{Ti}
