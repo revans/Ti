@@ -23,7 +23,11 @@ module Ti
   autoload  :CLI,           'ti/cli.rb'
   autoload  :Logger,        "ti/logger.rb"
   autoload  :Utils,         "ti/utils.rb"
-
+  
+  module Compiler
+    autoload :CoffeeScripts,  'ti/compiler/coffee_scripts.rb'
+  end
+  
   module Generate
     autoload  :Project,     "ti/generate/project.rb"
     autoload  :Model,       "ti/generate/model.rb"
