@@ -2,7 +2,7 @@ module Ti
   module Generate
     class Controller
       class << self
-        include Utils
+        include ::Ti::Utils
 
         def create(name, context={})
           create_controller_file(name, context)
@@ -10,21 +10,16 @@ module Ti
         
         
         def create_controller_file(name, context)
-          log "Creating #{name} controller using a template."      
-          controller_directory = "app/#{underscore(get_app_name)}/controllers"
-
-          # TODO: I don't think this is needed
-          # case context[:ti_type]
-          # when 'window'
-          #   template  = templates("app/controllers/window.erb")
-          # else
-          #   template  = templates("app/controllers/controller.erb")
-          # end
+          log "Creating #{name} controller using a template."     
+          app_name  = get_app_name 
+          controller_directory = "app/#{underscore(app_name)}/controllers"
+          context.merge!(:app_name => app_name, :name => name)
+          
 
           template  = templates("app/controllers/controller.erb")
-
           payload   = Pathname.new("#{controller_directory}")
           contents  = Erubis::Eruby.new(File.read(template)).result(context) if template
+          
           create_directories(payload)             unless File.directory?(payload)
           create_directories("spec/controllers")  unless File.directory?("spec/controllers")
           
