@@ -17,6 +17,7 @@ module Ti
 
           create_new_file("#{model_directory}/#{name}.coffee")
           create_new_file("spec/models/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
+          
           append_to_router(name, 'models')
         end
         

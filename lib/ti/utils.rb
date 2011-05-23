@@ -58,7 +58,7 @@ module Ti
       if router_contents.include?(type.capitalize)
         contents = router_contents.sub( "#{type.capitalize}:", "#{type.capitalize}:\n\t\t#{name.capitalize}: {}" )
       else
-        contents = router_contents.sub("ShwinkersMobile =", "ShwinkersMobile =\n\t#{type.capitalize}:\n\t\t#{name.capitalize}: {}\n")
+        contents = router_contents.sub("#{get_app_name} =", "#{get_app_name} =\n\t#{type.capitalize}:\n\t\t#{name.capitalize}: {}\n")
       end
       File.open(location.join("app/app.coffee"), 'w') { |f| f.write(contents) }
     end 
