@@ -28,12 +28,12 @@ module Ti
         end
         
 
-        def create_config_from_templates(project_name)
-          eruby = Erubis::Eruby.new( File.read(templates("defaults/config.erb")) )
-          File.open(location.join("config/config.rb"), 'w') do |f| 
-            f.write(eruby.result(:project_name => project_name)) 
-          end
-        end
+        # def create_config_from_templates(project_name)
+        #   eruby = Erubis::Eruby.new( File.read(templates("defaults/config.erb")) )
+        #   File.open(location.join("config/config.rb"), 'w') do |f| 
+        #     f.write(eruby.result(:app_name => project_name)) 
+        #   end
+        # end
         
         # def create_with_template(name, template_location, contents={})
         #   template  = templates(template_location)
@@ -48,8 +48,8 @@ module Ti
           File.open(location.join(name), 'w') do |f| 
             f.write(eruby.result(contents))
           end
-
         end
+        
 
         def create_rakefile_from_template(project_name)
           eruby = Erubis::Eruby.new( File.read(templates("defaults/Rakefile.erb")) )
@@ -77,7 +77,21 @@ module Ti
           create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
           create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
           
-          create_config_from_templates(@project_name)
+          # create_config_from_templates(@project_name)
+          
+          
+          create_with_template('config/config.rb', 'defaults', {:app_name => @project_name})
+          
+          
+          # def create_config_from_templates(project_name)
+          #   eruby = Erubis::Eruby.new( File.read(templates("defaults/config.erb")) )
+          #   File.open(location.join("config/config.rb"), 'w') do |f| 
+          #     f.write(eruby.result(:project_name => project_name)) 
+          #   end
+          # end
+          
+          
+          
           default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile']
           default_templates.each do |deftemp|
             create_with_template(deftemp, 'defaults', {:app_name => @project_name, :app_name_underscore => underscore(@project_name)})
