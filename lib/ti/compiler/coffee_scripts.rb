@@ -9,7 +9,7 @@ module Ti
           files       = coffeefile.collect { |a| Dir.glob[a] }.flatten!.uniq
           @contents   = ''
           files.each { |f| @contents << File.read(f) }
-          compile(@contents, base_location.join("Resources/#{get_app_name}.js")
+          compile(@contents, base_location.join("Resources/#{get_app_name}.js"))
         end
         
         def compile(contents, compile_to_location)
