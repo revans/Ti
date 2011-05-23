@@ -13,7 +13,7 @@ module Ti
     def cli_error(message, exit_status=nil)
       $stderr.puts message
       exit_status = STATUS_TYPES[exit_status] if exit_status.is_a?(Symbol)
-      exit exit_status || 1
+      exit(exit_status || 1)
     end
     }
 
