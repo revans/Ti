@@ -27,6 +27,7 @@ module Ti
           File.open(location.join(filename), 'w') { |f| f.write(contents) }
 
           create_new_file("spec/controllers/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
+          append_to_router(name, 'controllers')
         end
         
 

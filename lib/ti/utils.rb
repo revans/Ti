@@ -52,6 +52,16 @@ module Ti
       File.open(location.join(name.gsub(/^\//, '')), 'w') { |f| f.write(eruby.result(contents))}
     end
     
+    def append_to_router(name, type)
+      router_contents = File.read(location.join("app/app.coffee"))
+      
+      if router_contents.include?(type.capitalize)
+        contents = router_contents.sub( "#{type.capitalize}:", "#{type.capitalize}:\n\t\t#{name.capitalize}: {}" )
+      else
+        contents = router_contents.sub("ShwinkersMobile =", "ShwinkersMobile =\n\t#{type.capitalize}:\n\t\t#{name.capitalize}: {}\n")
+      end
+      File.open(location.join("app/app.coffee"), 'w') { |f| f.write(contents) }
+    end 
     
     
     def templates(path)

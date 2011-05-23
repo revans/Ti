@@ -37,6 +37,7 @@ module Ti
 
           create_new_file("spec/views/#{name}_spec.coffee", templates("specs/app_spec.coffee"))
           create_new_file("app/#{underscore(app_name)}/stylesheets/_#{(context[:domain] || '').downcase}.sass", templates("app/stylesheets/sample.sass"))
+          append_to_router(name, 'views')
         end
 
       end
