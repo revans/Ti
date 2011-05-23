@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.authors       = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
   s.date          = %q{2011-05-23}
   s.email         = %q{robert@codewranglers.org}
-  s.homepage      = %q{http://github.com/revans/ti}
-  s.summary       = %q{Ti}
-  s.description   = %q{Titanium Project Generator}
+  s.homepage      = %q{http://github.com/codewranglers/ti}
+  s.summary       = %q{Ti - Titanium Project Generator}
+  s.description   = %q{Titanium Rapid Development Framework}
   s.license       = "MIT"
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<jasmine>,             ["~> 1.0.2.0"])
   s.add_runtime_dependency(%q<coffee-script>,       ["~> 2.2.0"])
   s.add_runtime_dependency(%q<colored>,             ["~> 1.2"])
-  s.add_runtime_dependency(%q<rocco>,               ["~> 0.6"])
   s.add_runtime_dependency(%q<rake>,                ["~> 0.8.7"])
   s.add_runtime_dependency(%q<nokogiri>,            ["~> 1.4.4"])
   s.add_runtime_dependency(%q<erubis>,              ["~> 2.7.0"])
@@ -35,5 +34,6 @@ Gem::Specification.new do |s|
   
   s.add_development_dependency(%q<bundler>,         ["~> 1.0.10"])
   s.add_development_dependency(%q<rspec>,           ["~> 2.5.0"])
+  s.add_development_dependency(%q<rocco>,           ["~> 0.6"])
 end
 
