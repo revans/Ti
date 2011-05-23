@@ -42,7 +42,7 @@ module Ti
 
           create_with_template('config/config.rb', 'defaults/config', full_app_hash)
 
-          default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile']
+          default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile', 'Coffeefile']
           default_templates.each do |tempfile|
             create_with_template(tempfile, "defaults/#{tempfile}", full_app_hash)
           end
