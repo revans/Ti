@@ -3,23 +3,8 @@ require 'nokogiri'
 require 'colored'
 require 'betabuilder'
 
-PROJECT_NAME = "<%= app_name %>"
-PROJECT_ROOT = File.dirname(__FILE__)
-
-IPHONE_SDK_VERSION = "4.3"
-TI_SDK_VERSION = "1.6.2"
-TI_DIR = '/Library/Application\ Support/Titanium'
-TI_ASSET_DIR = "#{TI_DIR}/mobilesdk/osx/#{TI_SDK_VERSION}"
-TI_IPHONE_DIR = "#{TI_ASSET_DIR}/iphone"
-TI_BUILD = "#{TI_IPHONE_DIR}/builder.py"
-APP_DEVICE = "iphone"
-
-# Get APP parameters from current tiapp.xml
-config = File.open("tiapp.xml")
-doc = Nokogiri::XML(config)
-config.close
-APP_ID = doc.xpath('ti:app/id').text
-APP_NAME = doc.xpath('ti:app/name').text
+require File.expand_path(File.join(Dir.pwd, 'config/config.rb'))
+include Config
 
 BetaBuilder::Tasks.new do |config|
   # App Name
