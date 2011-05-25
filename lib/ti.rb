@@ -20,6 +20,7 @@ module Ti
   OSX_TITANIUM      = "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{::Ti::TITANIUM_VERSION}/titanium.py"
   LINUX_TITANIUM    = "$HOME/.titanium/mobilesdk/linux/#{::Ti::TITANIUM_VERSION}/titanium.py"
   
+  autoload  :VERSION,       'ti/version.rb'
   autoload  :CLI,           'ti/cli.rb'
   autoload  :Logger,        "ti/logger.rb"
   autoload  :Utils,         "ti/utils.rb"
