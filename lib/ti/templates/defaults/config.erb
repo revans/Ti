@@ -23,5 +23,5 @@ module Config
   # Application
   APP_ID              = doc.xpath('ti:app/id').text
   APP_NAME            = doc.xpath('ti:app/name').text
-  APP_DEVICE          = "iphone"
+  APP_DEVICE          = "<%= platform %>"
 end
