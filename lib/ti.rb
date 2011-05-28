@@ -27,6 +27,7 @@ module Ti
   
   module Compiler
     autoload :CoffeeScripts,  'ti/compiler/coffee_scripts.rb'
+    autoload :SASSScripts,    'ti/compiler/sass_scripts.rb'
   end
   
   module Generate

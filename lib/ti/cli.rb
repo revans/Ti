@@ -24,6 +24,7 @@ module Ti
       say "Version #{::Ti::VERSION}"
     end
     
+    map %(n) => 'new'
     desc "new <name> <id> <platform>", "generates a new Titanium project."
     long_desc "Generates a new Titanium project. See 'ti help new' for more information.
               \n\nExamples:
@@ -67,9 +68,17 @@ module Ti
           :name     => name })
     end
     
-    desc "compile", "compiles all CoffeeScripts"
-    def compile
-      ::Ti::Compiler::CoffeeScripts.compile_all!
+    desc "compile <all/coffee/sass>", "compiles all CoffeeScripts"
+    def compile(type)
+      case
+      when type =~ /all/i
+        ::Ti::Compiler::CoffeeScripts.compile_all!
+        ::Ti::Compiler::SASSScripts.compile
+      when type =~ /coffee/i
+        ::Ti::Compiler::CoffeeScripts.compile_all!
+      when type =~ /sass/i
+        ::Ti::Compiler::SASSScripts.compile
+      end
     end
 
   end
