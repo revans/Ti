@@ -1,10 +1,13 @@
+require 'fileutils'
+require 'nokogiri'
+
 module Config
   config  = File.open('tiapp.xml')
   doc     = Nokogiri::XML(config)
   config.close
 
   PROJECT_NAME        = "<%= app_name %>"
-  PROJECT_ROOT        = File.dirname(__FILE__)
+  PROJECT_ROOT        = FileUtils.pwd()
   PROJECT_VERSION     = "0.0.1"
 
   IPHONE_SDK_VERSION  = "4.3"

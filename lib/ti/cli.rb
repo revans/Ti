@@ -81,5 +81,11 @@ module Ti
       end
     end
 
+    map %w(b) => 'build'
+    desc "build <all/iphone/android/ipad/desktop/>", "Build the project using Titanium"
+    def build(platform)
+      ::Ti::Builder::Titanium.build platform
+    end
+
   end
 end
