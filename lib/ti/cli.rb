@@ -24,6 +24,7 @@ module Ti
       say "Version #{::Ti::VERSION}"
     end
     
+    map %(n) => 'new'
     desc "new <name> <id> <platform>", "generates a new Titanium project."
     long_desc "Generates a new Titanium project. See 'ti help new' for more information.
               \n\nExamples:
