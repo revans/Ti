@@ -12,11 +12,21 @@ module Ti
             log "There are no files to compile."
             exit(0)
           end
+
+          compile_main
+
           @contents   = ''
           files.uniq!.each { |f| @contents << File.read(f) }
           compile_location = "Resources/#{underscore(get_app_name).downcase}.js"
           compile(@contents, base_location.join(compile_location))
           log "Your CoffeeScripts have been compiled to: #{compile_location}"
+        end
+
+        def compile_main
+          compile_location = "Resources/app.js"
+          @contents = File.read("app/app.coffee")
+          compile(@contents, compile_location)
+          log "Main app.coffee has been compiled to: #{compile_location}"
         end
         
         def compile(contents, compile_to_location)

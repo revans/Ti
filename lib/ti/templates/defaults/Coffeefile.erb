@@ -5,12 +5,14 @@
 # add the rest of the files that don't require specific loading. 
 #
 # Example
+#   app/dailyfocus/app.coffee
 #   app/dailyfocus/models/user.coffee
 #   app/dailyfocus/models/task.coffee
 #   app/dailyfocus/models/**/*.coffee
 #   app/dailyfocus/controllers/**/*.coffee
 #   app/dailyfocus/views/**/*.coffee
 #
-app/<%= app_name %>/models/**/*.coffee
-app/<%= app_name %>/controllers/**/*.coffee
-app/<%= app_name %>/views/**/*.coffee
+app/<%= app_name_underscore %>/app.coffee
+app/<%= app_name_underscore %>/models/**/*.coffee
+app/<%= app_name_underscore %>/controllers/**/*.coffee
+app/<%= app_name_underscore %>/views/**/*.coffee
