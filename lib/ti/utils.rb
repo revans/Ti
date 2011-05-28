@@ -4,7 +4,9 @@ module Ti
     def create_new_file(name, file=nil)
       log "Creating #{name}"
       contents = file.nil? ? '' : File.read(file)
-      File.open(location.join(name), 'w') { |f| f.write(contents) }
+      unless File.file?(location.join(name))
+        File.open(location.join(name), 'w') { |f| f.write(contents) }
+      end
     end
     
     def get_app_name
