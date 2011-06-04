@@ -15,7 +15,7 @@ module Ti
           
           compile_main
           compile_location = "Resources/#{underscore(get_app_name).downcase}.js"
-          compile(files.join(' '), base_location.join(compile_location), :bare => true, :join => true)
+          compile(files.join(' '), base_location.join(compile_location), :join => true, :bare => true)
         end
 
         def compile_main
