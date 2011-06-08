@@ -41,7 +41,7 @@ module Ti
           create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
           
           create_with_template('config/config.rb', 'defaults/config', full_app_hash)
-          create_with_template('app/#{underscore(@project_name)}/helpers/application.coffee', 'app/helpers/application.coffee', full_app_hash)
+          create_with_template("app/#{underscore(@project_name)}/helpers/application.coffee", 'app/helpers/application.coffee', full_app_hash)
 
           default_templates = ['Rakefile', 'Readme.mkd', 'Guardfile', 'Coffeefile']
           default_templates.each do |tempfile|
