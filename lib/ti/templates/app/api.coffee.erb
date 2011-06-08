@@ -4,7 +4,7 @@ class <%= app_name %>.API
 
   requestURI: (path, query={}) ->
     # NOTE: Setup your own API endpoint, as below
-    <%= app_name %>.API_ENDPOINT = "http://<%= app_name.downcase %>.com/api/v1"
+    <%= app_name %>.API_ENDPOINT = "http://<%= app_name_underscore %>.com/api/v1"
 
     uri = "#{<%= app_name %>.API_ENDPOINT}#{path}.json?"
     for own key, value of query

@@ -35,7 +35,8 @@ module Ti
           create_with_template("app/#{underscore(@project_name)}/app.coffee", 'app/app_project.coffee', full_app_hash)
           create_with_template("app/#{underscore(@project_name)}/api.coffee", 'app/api.coffee', full_app_hash)
 
-          create_new_file(".gitignore",             templates('defaults/gitignore'))
+          create_with_template('.gitignore', 'defaults/gitignore', full_app_hash)
+          
           create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
           create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
           
