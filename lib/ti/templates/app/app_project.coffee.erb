@@ -1,111 +1,111 @@
 <%= app_name %>.App =
-  init: ->
-    # This sets the background color of the master UIView
-    Ti.UI.iPhone.statusBarStyle = Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK
 
-    # Return the currently logged in user from App persisted properties
-    currentUser: ->
-      userData = Ti.App.Properties.getString('user')
-      if userData?
-        user = JSON.parse(userData)
-        return user
-      else
-        null
+  currentUser: ->
+    userData = Ti.App.Properties.getString('user')
+    if userData?
+      user = JSON.parse(userData)
+      return user
+    else
+      null
 
-    # Authenticate a user
-    authenticate: (login, password) ->
-      Ti.API.debug('<%= app_name %>.App.authenticate')
+  # Attempt to log in with saved creds
+  hasCurrentSession: ->
+    login     = Ti.App.Properties.getString 'login'
+    password  = Ti.App.Properties.getString 'password'
+    if login? and password?
+      Ti.API.debug "Found current session with login: #{login} and password: #{password}"
       this.api = new <%= app_name %>.API(login, password)
-      this.api.authenticate
-        success: (user) ->
-          # Stash the user for `.currentUser()`
-          Ti.App.Properties.setString('user', JSON.stringify(user))
-          # Stash the username/password for the user later
-          Ti.App.Properties.setString 'login', login
-          Ti.App.Properties.setString 'password', password
-          # Call any other callbacks
-          Ti.App.fireEvent 'login:success', user.username
-        error: (e) ->
-          Ti.API.error(e)
+    else
+      Ti.API.debug "No current session found", login, password
+    login? and password?
 
-    # Attempt to login with saved credentials
-    hasCurrentSession: ->
-      login = Ti.App.Properties.getString 'login'
-      password = Ti.App.Properties.getString 'password'
-      if login? and password?
-        Ti.API.debug "Found current session with login: #{login}"
-        this.api = new <%= app_name %>.API(login, password)
-      else
-        Ti.API.debug "No current session found", login, password
-      login? and password?
+  getCurrentLocation: (options) ->
+    options.success  ?= ->
+    options.error    ?= ->
+    Ti.Geolocation.purpose = "Find something near you"
+    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_KILOMETER
+    Ti.Geolocation.getCurrentPosition (e) ->
+      if !e.success || e.error
+        Ti.API.error e.error
+        options.error e.error
+      options.success e.coords if e.success
+      
+  
+  # Authenticate a user
+  authenticate: (login, password) ->
+    Ti.API.debug('<%= app_name %>.App.authenticate')
+    @api = new <%= app_name %>.API(login, password)
+    @api.authenticate
+      success: (user) ->
+        Ti.App.Properties.setString('user', JSON.stringify(user))
+        Ti.App.Properties.setString('login', login)
+        Ti.App.Properties.setString('password', password)
+        Ti.App.fireEvent 'login:success', user.username
+      error: (e) ->
+        Ti.API.error(e)
 
-    # Clears the current session by removing the persisted property for user
-    signOut: ->
-      Ti.App.Properties.removeProperty 'user'
-      Ti.App.Properties.removeProperty 'login'
-      Ti.App.Properties.removeProperty 'password'
-      Ti.App.fireEvent 'logout'
+  # Registers a new user
+  register: (options) ->
+    api = new <%= app_name %>.API
+    api.register options
+  
+  signOut: ->
+    Ti.App.Properties.removeProperty 'user'
+    Ti.App.Properties.removeProperty 'login'
+    Ti.App.Properties.removeProperty 'password'
+    Ti.App.fireEvent 'logout'
 
-    # A function to open the login window
+  init: ->
+    Ti.UI.setBackgroundColor '#000'
+    Ti.UI.iPhone.statusBarStyle = Ti.UI.iPhone.StatusBar.OPAQUE_BLACK
+
     showLogin = () ->
-      login = <%= app_name %>.Views.createLoginWindow
-        title: 'Login'
-        id: 'loginWindow'
+      rootWindow  = Ti.UI.createWindow()
+      login       = <%= app_name %>.Views.Account.createLoginWindow
+        title:  'Login'
+        id:     'loginWindow'
+      <%= app_name %>.App.sessionNavGroup = Ti.UI.iPhone.createNavigationGroup
+        window: login
+      rootWindow.add <%= app_name %>.App.sessionNavGroup
+      Ti.App.addEventListener 'login:success', (e) ->
+        rootWindow.close()
+      rootWindow.open()
+      
+    loggedIn = <%= app_name %>.App.hasCurrentSession()
 
-      # Open the login window modally with no nav bar
-      login.open
-        modal: true
-        navBarHidden: true
+    if loggedIn
+      <%= app_name %>.App.initTabGroup()
+    else
+      showLogin() unless loggedIn
 
-    <%= app_name %>.App.initTabGroup()
+    # Listen to an app-wide `logout` event and show the login again
+    Ti.App.addEventListener 'logout', (e) ->
+      showLogin()
+
+    Ti.App.addEventListener 'login:success', (e) ->
+      <%= app_name %>.App.initTabGroup()
 
   initTabGroup: ->
-    # # Create a new TabGroup to manage tabs
     <%= app_name %>.App.tabGroup = Ti.UI.createTabGroup()
 
-    # ### Set up the **sampleWindow**
+    # Sample Tab
     sampleWindow = <%= app_name %>.Views.Sample.createMainWindow
-      title: 'Sample'
-      id: 'sampleWindow'
-
-      # Titanium magic to handle orientation changes
-      orientationModes: [
-        Ti.UI.PORTRAIT
-        Ti.UI.UPSIDE_PORTRAIT
-        Ti.UI.LANDSCAPE_LEFT
-        Ti.UI.LANDSCAPE_RIGHT
-      ]
-
-    # ### Set up the Sample Window
-    <%= app_name %>.App.sampleTab = Ti.UI.createTab
-      id: 'sampleTab'
-      className: 'tabElement'
-      title: 'sample'
-      window: sampleWindow
-
-    <%= app_name %>.App.tabGroup.addTab <%= app_name %>.App.sampleTab
-
-    # ### Set up the ***Settings Window***
-    settingsWindow = <%= app_name %>.Views.Settings.createMainWindow
-      title: 'Settings'
-      id: 'settingsWindow'
-
-      # Titanium magic to handle orientation changes
-      orientationModes: [
-        Ti.UI.PORTRAIT
-        Ti.UI.UPSIDE_PORTRAIT
-        Ti.UI.LANDSCAPE_LEFT
-        Ti.UI.LANDSCAPE_RIGHT
-      ]
-
-    <%= app_name %>.App.settingsTab = Ti.UI.createTab
-      id: 'settingsTab'
-      className: 'tabElement'
-      title: 'settings'
-      window: settingsWindow
-
-    <%= app_name %>.App.tabGroup.addTab <%= app_name %>.App.settingsTab
-
-    # Open the TabGroup and first window via selecte tab
+      title:            'Sample'
+      id:               'sampleWindow'
+      orientationModes: <%= app_name %>.Helpers.Application.createOrientiationModes
+    <%= app_name %>.App.sampleWindow = Ti.UI.createTab
+      id:               'sampleTab'
+      className:        'tabElement'
+      title:            'Sample'
+      window:           sampleWindow
+    
+    
+    # Bottom Tab Loader
+    <%= app_name %>.App.tabGroup.addTab <%= app_name %>.App.sampleWindow
+    
+    <%= app_name %>.App.tabGroup.addEventListener 'focus', (e) ->
+      <%= app_name %>.App.currentTab = e.tab
+      Ti.API.info(<%= app_name %>.App.currentTab)
+    
+    # Open Tabs
     <%= app_name %>.App.tabGroup.open()
-
