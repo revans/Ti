@@ -58,9 +58,10 @@ module Ti
             'config', 
             'docs', 
             "app/#{underscore(@project_name)}/models", 
+            "app/#{underscore(@project_name)}/helpers",
             "app/#{underscore(@project_name)}/views", 
             "app/#{underscore(@project_name)}/stylesheets", 
-            'spec/models', 'spec/views') 
+            'spec/models', 'spec/views', 'spec/helpers') 
         end
         
         def remove_old_files
