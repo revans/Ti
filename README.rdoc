@@ -18,7 +18,7 @@ Install the gem
 
 Create a new Project
 
-  ti new HelloTi com.yourdomain.helloti iphone `
+  ti new HelloTi com.yourdomain.helloti iphone
 
 
 Create your views
