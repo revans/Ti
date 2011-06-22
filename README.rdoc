@@ -41,9 +41,13 @@ Update your `app/hello_ti/stylesheets/app.sass` to include the generated sass
   @import 'settings'  
 
 
-Run it!
+Run it using `rake`
 
   rake  
+
+Or run it using `ti`
+
+  ti compile all && ti build iphone
 
 
 You can now start adding components. Enjoy!
