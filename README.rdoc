@@ -1,8 +1,6 @@
 = Ti
 
-Titanium Application Generator. Uses CoffeeScript for writing your JavaScript, Jasmine and Guard for testing. 
-
-Just playing with some ideas.
+A rapid development framework for titanium.
 
 == Requirements
  
@@ -20,7 +18,7 @@ Install the gem
 
 Create a new Project
 
-  ti new HelloTi com.yourdomain.helloti iphone `
+  ti new HelloTi com.yourdomain.helloti iphone
 
 
 Create your views
@@ -61,8 +59,14 @@ You can now start adding components. Enjoy!
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
+
+== Contributions
+
+* Julius Francisco (tons of code, ideas, patterns, tests, time, and all around good guy)
+* Wynn Netherland  (sass, initial patterns & and help with preliminary architectural design)
+* Rupak Ganguly    (initial cli, removal of jeweler, tests)
+
 == Copyright
 
-Copyright (c) 2011 Code Wranglers Inc, Robert R Evans. See LICENSE.txt for
-further details.
+Copyright (c) 2011 Code Wranglers Inc, Robert R Evans. See LICENSE.txt for further details.
 
