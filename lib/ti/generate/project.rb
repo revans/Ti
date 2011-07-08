@@ -30,7 +30,7 @@ module Ti
 
         def generate_files
           create_project_directory
-          full_app_hash = {:app_name => @project_name.capitalize, :app_name_underscore => underscore(@project_name), :platform => @device_platform}
+          full_app_hash = {:app_name => @project_name, :app_name_underscore => underscore(@project_name), :platform => @device_platform}
           create_with_template('app/app.coffee', 'app/app.coffee', full_app_hash)
           create_with_template("app/#{underscore(@project_name)}/app.coffee", 'app/app_project.coffee', full_app_hash)
           create_with_template("app/#{underscore(@project_name)}/api.coffee", 'app/api.coffee', full_app_hash)
