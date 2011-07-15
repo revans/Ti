@@ -1,0 +1,18 @@
+require 'rubygems'
+require 'betabuilder'
+
+# BetaBuilder Example usage
+BetaBuilder::Tasks.new do |config|
+  config.target           = "<%= name %>"
+  config.build_dir        = File.expand_path(File.join(Dir.pwd, 'build'))
+  config.configuration    = "Ad hoc"
+  
+  config.deploy_using(:testflight) do |tf|
+    tf.api_token  = ""
+    tf.team_token = ""
+    tf.generate_release_notes do
+      "Testing Build" # TODO: Changelog
+    end
+    tf.distribution_lists = %w{Internal}
+  end
+end

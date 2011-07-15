@@ -1,0 +1,40 @@
+<%= name %>.App =
+
+  initTabGroup: ->
+    <%= name %>.App.tabGroup = Ti.UI.createTabGroup()
+
+    # Sample Tab
+    sampleWindow = <%= name %>.Views.Sample.createMainWindow
+      title:            'Sample'
+      id:               'sampleWindow'
+      orientationModes: <%= name %>.Helpers.Application.createOrientiationModes
+    <%= name %>.App.sampleTab = Ti.UI.createTab
+      id:               'sampleTab'
+      className:        'tabElement'
+      title:            'Sample'
+      window:           sampleWindow
+
+    # Bottom Tab Loader
+    <%= name %>.App.tabGroup.addTab <%= name %>.App.sampleTab
+
+    # Settings Tab
+    settingsWindow = <%= name %>.Views.Settings.createMainWindow
+      title:            'Settings'
+      id:               'settingsWindow'
+      orientationModes: <%= name %>.Helpers.Application.createOrientiationModes
+
+    <%= name %>.App.settingsTab = Ti.UI.createTab
+      id:               'settingsTab'
+      className:        'tabElement'
+      title:            'Settings'
+      window:           settingsWindow
+
+    # Bottom Tab Loader
+    <%= name %>.App.tabGroup.addTab <%= name %>.App.settingsTab
+
+    <%= name %>.App.tabGroup.addEventListener 'focus', (e) ->
+      <%= name %>.App.currentTab = e.tab
+      Ti.API.info(<%= name %>.App.currentTab)
+
+    # Open Tabs
+    <%= name %>.App.tabGroup.open()

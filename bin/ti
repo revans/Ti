@@ -1,4 +1,2 @@
 #!/usr/bin/env ruby
-
 require 'ti'
-Ti::CLI.start

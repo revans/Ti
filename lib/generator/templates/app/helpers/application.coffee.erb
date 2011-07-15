@@ -1,0 +1,31 @@
+<%= name %>.Helpers.Application =
+  
+  createOrientiationModes: ->
+    modes = [
+      Titanium.UI.PORTRAIT
+      Titanium.UI.UPSIDE_PORTRAIT
+      Titanium.UI.LANDSCAPE_LEFT
+      Titanium.UI.LANDSCAPE_RIGHT
+    ]
+    modes
+    
+  genericWindowSetup: (options) ->
+    window      = Ti.UI.createWindow(options.params)
+    windowTitle = $.Helpers.Application.createWindowTitleLabel
+      title: options.title
+    window.setTitleControl(windowTitle)
+    window.barColor = '#c4db66'
+    window
+  
+  genericIndicator: (options) ->
+    indicator     = Ti.UI.createActivityIndicator
+      className:   'indicator'
+      style:        options.style
+    indicator
+  
+  genericAlertBox: (message) ->
+    alertBox      = Ti.UI.createAlertDialog
+      title:        message
+      buttonNames:  ['OK']
+      cancel:       3
+    alertBox.show()
