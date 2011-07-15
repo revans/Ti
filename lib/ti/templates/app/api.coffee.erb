@@ -4,13 +4,12 @@ class <%= app_name %>.API
 
   requestURI: (path, query={}) ->
     # NOTE: Setup your own API endpoint, as below
-    <%= app_name %>.API_ENDPOINT = "http://<%= app_name_underscore %>.com/api/v1"
+    <%= app_name %>.API_ENDPOINT = "http://<%= app_name_underscore %>.com/api"
 
     uri = "#{<%= app_name %>.API_ENDPOINT}#{path}.json?"
     for own key, value of query
       uri += "#{ key }=#{ escape(value) }&"
 
-    uri = uri.replace(/^(&)/g, '')
     uri
   
   request: (path, options, authenticated=true) ->
@@ -32,7 +31,7 @@ class <%= app_name %>.API
           options.error(exception)
     uri = @requestURI(path, options.query)
     xhr.open(options.method, uri)
-    xhr.setRequestHeader 'Authorization', 'Basic ' + Ti.Utils.base64encode(@login+':'+@password) if authenticated  
+    xhr.setRequestHeader 'Authorization', 'Basic ' + Ti.Utils.base64encode(@login+':'+@password) if authenticated
     
     message = "Executing "
     message += if authenticated then "Authenticated " else "Unauthenticated "
@@ -56,6 +55,14 @@ class <%= app_name %>.API
   # High level method for POST requests
   post: (path, options, authenticated=true) ->
     options.method = 'POST'
+    @request path, options, authenticated
+
+  put: (path, options, authenticated=true) ->
+    options.method = 'PUT'
+    @request path, options, authenticated
+
+  delete: (path, options, authenticated=true) ->
+    options.method = 'DELETE'
     @request path, options, authenticated
 
 # Add your API endpoints below
