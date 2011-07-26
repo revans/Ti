@@ -47,12 +47,10 @@ class <%= name %>.API
     else
       xhr.send()
 
-  # High level method for GET requests
   get: (path, options, authenticated=true) ->
     options.method = 'GET'
     @request path, options, authenticated
 
-  # High level method for POST requests
   post: (path, options, authenticated=true) ->
     options.method = 'POST'
     @request path, options, authenticated

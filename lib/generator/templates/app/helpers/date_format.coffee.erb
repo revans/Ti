@@ -1,11 +1,12 @@
 <%= name %>.DateFormat =
-
-  relativeDate: (olderDate, newerDate) ->
+  # Similar to Rails' time ago in words
+  relativeDate: (olderDate) ->
     olderDate = new Date(olderDate) if (typeof olderDate == "string")
-    newerDate = new Date(newerDate) if (typeof newerDate == "string")
+    newerDate = new Date()
 
-    milliseconds = newerDate - olderDate
+    milliseconds = newerDate - olderDate;
 
+    # assumes there are 30.4 days in a month
     conversions = [
       ["years", 31518720000]
       ["months", 2626560000]
@@ -20,3 +21,8 @@
       return result + " " + conversion[0] + " ago" if result >= 2
 
     return "1 second ago"
+
+  shortDate: (long) ->
+    date = new Date(long)
+    formatted = "#{date.getMonth()+1}/#{date.getDate()}/#{date.getFullYear()}"
+    formatted

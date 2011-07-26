@@ -1,5 +1,18 @@
 <%= name %>.App =
-
+  debug: (msg, object) ->
+    Ti.API.debug( "#{msg} :: #{JSON.stringify(object)}" )
+  
+  getCurrentLocation: (options) ->
+    options.success  ?= ->
+    options.error    ?= ->
+    Ti.Geolocation.purpose  = "Find joints near you"
+    Ti.Geolocation.accuracy = Ti.Geolocation.ACCURACY_BEST
+    Ti.Geolocation.getCurrentPosition (e) ->
+      if !e.success || e.error
+        Ti.API.error e.error
+        options.error e.error
+      options.success e.coords if e.success
+  
   initTabGroup: ->
     <%= name %>.App.tabGroup = Ti.UI.createTabGroup()
 
