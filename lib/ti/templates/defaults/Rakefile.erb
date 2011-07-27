@@ -16,6 +16,7 @@ BetaBuilder::Tasks.new do |config|
 end
 
 task :default => ["build:iphone"]
+task :clean_build => ["build:clean", "build:iphone"]
 
 namespace :setup do
   desc "Do all the setup procedures"
@@ -62,6 +63,11 @@ namespace :build do
   desc "Build the app for iPhone"
   task :iphone do
     build
+  end
+
+  desc "Clean iphone build artifacts"
+  task :clean do
+    clean
   end
 end
 
@@ -122,6 +128,11 @@ def compile_coffee
   end
 
   compilation
+end
+
+def clean
+  puts "Deleting contents of build/iphone directory.".blue
+  system("rm -rf #{File.join(Dir.pwd, 'build/iphone/*')}")
 end
 
 def build(options={})
