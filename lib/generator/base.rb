@@ -6,7 +6,7 @@ module Ti
 
         def create_file_with_template(name, template_location, contents={})
           template  = templates("#{template_location}.erb")
-          eruby     = ::Erubis::Eruby.new(File.rew(template))
+          eruby     = ::Erubis::Eruby.new(File.new(template))
           File.open(Ti::Source.project_path.join(name.gsub(/^\//, '')), 'w+') { |f| f.write( eruby.result(contents) ) }
         end
         
@@ -51,7 +51,7 @@ module Ti
         
         
         def templates(path)
-          ::Ti::Source.root.join('ti/generator/templates').join(path)
+          ::Ti::Source.root.join('generator/templates').join(path)
         end
         
         

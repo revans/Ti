@@ -13,7 +13,7 @@ module Ti
           
           # If titanium can create the initial project, then 
           # clean up its mess and give it structure.
-          if excute_titanium
+          if execute_titanium
             create_project_directories
             create_project_files
             log "#{@name} project has been generated."
@@ -37,7 +37,7 @@ module Ti
           # Lastly, our generic templates
           default_templates = ['Rakefile', 'Readme.md', 'Coffeefile']
           default_templates.each do |temp|
-            create_file_copy_content(temp, temp, @app_properties)
+            create_file_with_template(temp, temp, @app_properties)
           end
         end
         
@@ -62,13 +62,13 @@ module Ti
           
           # Execute the creation of a titanium project
           def execute_titanium
-            system("#{TI::Source.compiler_path} create --name=#{@name} --platform=#{@platform} --id=#{@app_id}")
+            system("#{Ti::Source.compiler_path} create --name=#{@name} --platform=#{@platform} --id=#{@app_id}")
           end
           
           
           # See if the OS is supported. Windows, right now, you're SOL! I hold grudges IE!
           def check_if_system_supported
-            if TI::Source.compiler_path.nil?
+            if Ti::Source.compiler_path.nil?
               error("Your OS is not supported.")
               exit(0)
             end
