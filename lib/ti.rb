@@ -17,6 +17,10 @@ module Ti
       @titanium_version ||= '1.6.2'
     end
     
+    def self.titanium_version=(version)
+      @titanium_version = version
+    end
+    
     def self.version
       VERSION
     end
@@ -46,7 +50,7 @@ module Ti
       @config_options ||= {
         :id               => contents.xpath('ti:app/id').text,
         :name             => contents.xpath('ti:app/name').text,
-        :underscore_name  => contents.xpath('ti:app/name').text.underscore,
+        :underscore_name  => contents.xpath('ti:app/name').text.downcase.underscore,
         :version          => contents.xpath('ti:app/version').text,
         :publisher        => contents.xpath('ti:app/publisher').text,
         :url              => contents.xpath('ti:app/url').text,
@@ -54,7 +58,11 @@ module Ti
         :copyright        => contents.xpath('ti:app/copyright').text
       } if contents
     end
+
   end
+  
+  autoload :Compile,    'compile'
+  autoload :CLI,        'cli'
   
   module Generator
     autoload :Base,     'generator/base'

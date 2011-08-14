@@ -5,7 +5,7 @@ require 'betabuilder'
 BetaBuilder::Tasks.new do |config|
   config.target           = "<%= name %>"
   config.build_dir        = File.expand_path(File.join(Dir.pwd, 'build'))
-  config.configuration    = "Ad hoc"
+  config.configuration    = "Ad Hoc"
   
   config.deploy_using(:testflight) do |tf|
     tf.api_token  = ""

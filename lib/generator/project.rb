@@ -47,11 +47,12 @@ module Ti
           remove_directories('Resources')
           create_directories('Resources/images', 'Resources/vendor', 
             'docs', 
-            "app/#{@name.underscore}/models", 
-            "app/#{@name.underscore}/helpers",
-            "app/#{@name.underscore}/views", 
-            "app/#{@name.underscore}/stylesheets/partials",
-            'spec/models', 'spec/views', 'spec/helpers')
+            "app/#{@name_underscore}/models", 
+            "app/#{@name_underscore}/helpers",
+            "app/#{@name_underscore}/views", 
+            "app/#{@name_underscore}/stylesheets/partials",
+            'spec/models', 'spec/views', 'spec/helpers'
+          )
         end
         
 

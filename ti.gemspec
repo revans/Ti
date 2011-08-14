@@ -19,11 +19,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   
   s.add_runtime_dependency(%q<coffeefile>,          ["~> 0.0.1"])
+  s.add_runtime_dependency(%q<compass>,             ["~> 0.11.6"])
   s.add_runtime_dependency(%q<colored>,             ["~> 1.2"])
-  s.add_runtime_dependency(%q<rake>,                ["~> 0.8.7"]) # TODO: test with Rake 0.9.2
-  s.add_runtime_dependency(%q<nokogiri>,            ["~> 1.4.4"])
+  s.add_runtime_dependency(%q<rake>,                ["~> 0.9.2"]) # TODO: test with Rake 0.9.2
+  s.add_runtime_dependency(%q<nokogiri>,            ["~> 1.5.0"])
   s.add_runtime_dependency(%q<erubis>,              ["~> 2.7.0"])
   
-  s.add_development_dependency(%q<rocco>,           ["~> 0.7"])
+  s.add_development_dependency(%q<rocco>,           ["~> 0.8.1"])
 end
 

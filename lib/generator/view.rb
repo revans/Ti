@@ -10,8 +10,9 @@ module Ti
           
           # Setup our path
           @path     = Pathname.new(path)
-          @context  = {:name => Ti::Source.config_options[:name], :view_name => @path.basename.downcase,
-            :domain => @view_type}
+          @context  = {:name      => Ti::Source.config_options[:name],   
+                       :view_name => @path.basename.downcase,
+                       :domain    => @view_type}
           
           # The view directory to create in the project
           view_directory = "app/#{Ti::Source.config_options[:underscore_name]}/views"
@@ -28,7 +29,8 @@ module Ti
           
           # Create the spec file and copy the contents to be used as a placeholder
           create_file_copy_content("spec/views/#{@path}_spec.coffee", "specs/app_spec.coffee")
-          create_file_copy_content("app/#{Ti::Source.config_options[:underscore_name]}/stylesheets/_#{@path.basename.downcase}", 
+          create_file_copy_content(
+            "app/#{Ti::Source.config_options[:underscore_name]}/stylesheets/_#{@path.basename.downcase}", 
             "app/stylesheets/sample.sass"
           )
           

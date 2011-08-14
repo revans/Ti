@@ -23,23 +23,38 @@ platform used.
     
     
     map %w(g) => 'generate'
-    desc "generate <model/controller/view> <name> <domain>", "generates a new model, controller, or view with jasmine specs."
+    desc "generate <model/view> <name> <domain>", "generates a new model or view with jasmine specs."
     long_desc <<-D
-Generate a model, controller, or view. 
+Generate a model or view. 
 
 Views
   For views, you can specify the "domain", which can be 1 of the following: window, tabgroup, or view.
     D
     def generate(type, name, domain=nil)
       case type
-      when /model/i       then Ti::Generator::Model.generate(name)
-      when /controller/i  then Ti::Generator::Controller.generate(name)
-      when /view/i        then Ti::Generator::View.generate(name, domain)
-        
+      when /model/i   then Ti::Generator::Model.generate(name)
+      when /view/i    then Ti::Generator::View.generate(name, domain)
+      # TODO: Presenter
       end
     end
     
-    # TODO: compile
+    
+    # Compile
+    desc "compile <all/coffee/sass>", "compile your coffee-script, sass, or all."
+    def compile(type)
+      case type.to_s
+      when /all/i
+        ::Ti::Compile.coffee_script!
+        ::Ti::Compile.sass!
+      when /coffee/i
+        ::Ti::Compile.coffee_script!
+      when /sass/i
+        ::Ti::Compile.sass!
+      end
+    end
+    
+    
+    
     # TODO: build
     
     
