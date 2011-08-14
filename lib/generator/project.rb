@@ -51,6 +51,7 @@ module Ti
             "app/#{@name_underscore}/helpers",
             "app/#{@name_underscore}/views", 
             "app/#{@name_underscore}/stylesheets/partials",
+            'vendor',
             'spec/models', 'spec/views', 'spec/helpers'
           )
         end
