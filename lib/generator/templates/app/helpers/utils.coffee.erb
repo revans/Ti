@@ -1,0 +1,111 @@
+<%= name %>.Helpers.Utils =
+
+  formatPhone: (number) ->
+    if number == null
+      return
+    elementValue = number
+    elementValue2 = null
+    elementValue = elementValue.replace(/\(/g, '')
+    elementValue = elementValue.replace(/\)/g, '')
+    elementValue = elementValue.replace(/\-/g, '')
+    elementValue = elementValue.replace(/\+/g, '')
+    elementValue = elementValue.replace(/\./g, '')
+    elementValue = elementValue.replace(/\ /g, '')
+    elementValue
+  
+  createPullToRefreshTable: (opts, fetchMethod) ->
+    fetchMethod ||= () ->
+
+    opts.className = 'pullToRefreshTable'
+
+    # Create a table view
+    table = Ti.UI.createTableView(opts)
+    table.fetch = fetchMethod
+
+    # Set up some views in our header
+
+    # The header itself
+    header = Ti.UI.createView
+      backgroundColor: '#d6dfa2'
+      width: 320
+      height: 60
+
+    # A border
+    border = Ti.UI.createView
+      backgroundColor: '#d6dfa2'
+      height: 2
+      bottom: 0
+
+    # A status label
+    statusLabel = Ti.UI.createLabel
+      text: "Pull to refresh"
+      left: 55
+      width: 200
+      bottom: 30
+      height: "auto"
+      color: '#333'
+      textAlign: "center"
+      font:
+        fontSize: 13
+        fontWeight: "bold"
+
+    # A last updated timestamp
+    lastUpdatedLabel = Ti.UI.createLabel
+      text: ""
+      left: 55
+      width: 200
+      bottom: 15
+      color: '#333'
+      textAlign: "center"
+      font:
+        fontSize: 12
+
+    # Activity Indicator
+    actInd = Ti.UI.createActivityIndicator
+      right: 20
+      bottom: 13
+      width: 30
+      height: 30
+      style: Ti.UI.iPhone.ActivityIndicatorStyle.DARK
+
+    header.add border
+    header.add statusLabel
+    header.add lastUpdatedLabel
+    header.add actInd
+
+    table.headerPullView = header
+
+    table.pulling = false
+    table.reloading = false
+
+    table.reset = () ->
+      table.setContentInsets
+        top: 0
+        animated: true
+      table.reloading = false
+      lastUpdatedLabel.text = "Last Updated: " + new Date().toString("yyyy-MM-dd HH:mm")
+      statusLabel.text = "Pull down to refresh..."
+      actInd.hide()
+
+    table.addEventListener 'scroll', (e) ->
+      offset = e.contentOffset.y
+
+      if (offset <= -65.0 && !table.pulling)
+        table.pulling = true
+        statusLabel.text = "Release to refresh..."
+      else if (table.pulling && offset > -65.0 && offset < 0)
+        table.pulling = false
+        statusLabel.text = "Pull down to refresh..."
+
+    table.addEventListener 'scrollEnd', (e) ->
+      if (table.pulling && !table.reloading && e.contentOffset.y <= -65.0)
+        table.reloading = true
+        table.pulling = false
+        actInd.show()
+        statusLabel.text = "Cheers! Reloading..."
+        table.setContentInsets
+          top: 60
+          animated: true
+        table.fetch()
+
+    table

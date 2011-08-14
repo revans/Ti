@@ -1,10 +1,10 @@
-class <%= name %>.API
+class <%= name %>.HTTP
 
   constructor: (@login, @password) ->
 
   requestURI: (path, query={}) ->
     # NOTE: Setup your own API endpoint, as below
-    <%= name %>.API_ENDPOINT = "http://<%= name_underscore %>.com/api"
+    <%= name %>.API_ENDPOINT = "http://<%= name_underscore %>.com/api/v1"
 
     uri = "#{<%= name %>.API_ENDPOINT}#{path}.json?"
     for own key, value of query
@@ -51,7 +51,7 @@ class <%= name %>.API
       xhr.send(data)
     else
       xhr.send()
-
+  
   get: (path, options, authenticated=true) ->
     options.method = 'GET'
     @request path, options, authenticated

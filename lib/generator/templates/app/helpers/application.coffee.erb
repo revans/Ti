@@ -1,5 +1,21 @@
 <%= name %>.Helpers.Application =
+
+  # Connection Detection
+  hasConnection: ->
+    Ti.Network.networkType != Ti.Network.NETWORK_NONE
+    
+  # Connection Alert
+  displayConnectionAlertDialog: ->
+    if !hasConnection
+      connectionAlert = Ti.UI.createAlertDialog
+        title:        'Warning'
+        message:      'Your device is not currently online.'
+        buttonNames:  ['OK']
+      connectionAlert.show()
   
+  titleize: (string) ->
+    string.charAt(0).toUpperCase() + string.slice(1)
+    
   createOrientiationModes: ->
     modes = [
       Titanium.UI.PORTRAIT
@@ -8,8 +24,14 @@
       Titanium.UI.LANDSCAPE_RIGHT
     ]
     modes
-    
-  genericWindowSetup: (options) ->
+
+  createWindowTitleLabel: (options) ->
+    windowTitle = Ti.UI.createLabel
+      className: 'windowTitleLabel'
+      text: options.title
+    windowTitle
+  
+  genericWindowTitle: (options) ->
     window      = Ti.UI.createWindow(options.params)
     windowTitle = $.Helpers.Application.createWindowTitleLabel
       title: options.title
@@ -29,3 +51,17 @@
       buttonNames:  ['OK']
       cancel:       3
     alertBox.show()
+    
+  # Format a phone number
+  formatPhone: (number) ->
+    if number == null
+      return
+    elementValue  = number
+    elementValue2 = null
+    elementValue  = elementValue.replace(/\(/g, '')
+    elementValue  = elementValue.replace(/\)/g, '')
+    elementValue  = elementValue.replace(/\-/g, '')
+    elementValue  = elementValue.replace(/\+/g, '')
+    elementValue  = elementValue.replace(/\./g, '')
+    elementValue  = elementValue.replace(/\ /g, '')
+    elementValue
