@@ -23,8 +23,8 @@ module Ti
 
       
       # Compile the entire project and run in the simulator
-      def project!
-        sh %Q{bash -c "#{::Ti::Source.compiler_path} run #{::Ti::Source.project_path}/ #{::Ti::Source.titanium_version} #{::Ti::Source.config_options[:id]} #{::Ti::Source.config_options[:underscore_name]} #{APP_DEVICE}" | perl -pe 's/^\\[DEBUG\\].*$/\\e[35m$&\\e[0m/g;s/^\\[INFO\\].*$/\\e[36m$&\\e[0m/g;s/^\\[WARN\\].*$/\\e[33m$&\\e[0m/g;s/^\\[ERROR\\].*$/\\e[31m$&\\e[0m/g;'}
+      def project!(device)
+        sh %Q{bash -c "#{::Ti::Source.compiler_path} run #{::Ti::Source.project_path}/ #{::Ti::Source.titanium_version} #{::Ti::Source.config_options[:id]} #{::Ti::Source.config_options[:underscore_name]} #{device}" | perl -pe 's/^\\[DEBUG\\].*$/\\e[35m$&\\e[0m/g;s/^\\[INFO\\].*$/\\e[36m$&\\e[0m/g;s/^\\[WARN\\].*$/\\e[33m$&\\e[0m/g;s/^\\[ERROR\\].*$/\\e[31m$&\\e[0m/g;'}
       end
       
     end

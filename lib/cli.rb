@@ -55,8 +55,11 @@ Views
     
     
     
-    # TODO: build
-    
+    # Build and run in the simulator
+    desc "build <iphone/android/ipad>", "build your project for your device."
+    def build(device)
+      ::Ti::Compile.project!(device)
+    end
     
     
     
