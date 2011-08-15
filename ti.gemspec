@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   
-  s.add_runtime_dependency(%q<coffeefile>,          ["~> 0.0.1"])
+  s.add_runtime_dependency(%q<coffeefile>,          ["~> 0.0.3"])
   s.add_runtime_dependency(%q<compass>,             ["~> 0.11.5"])
   s.add_runtime_dependency(%q<colored>,             ["~> 1.2"])
   s.add_runtime_dependency(%q<rake>,                ["~> 0.9.2"])

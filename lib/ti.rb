@@ -12,19 +12,19 @@ require 'core/string'
 module Ti
   VERSION = '0.2.0'
   
+  def self.version
+    VERSION
+  end
+  
   module Source
     def self.titanium_version
-      @titanium_version ||= '1.6.2'
+      @titanium_version ||= '1.7.2'
     end
     
     def self.titanium_version=(version)
       @titanium_version = version
     end
-    
-    def self.version
-      VERSION
-    end
-    
+
     def self.root
       @root ||= Pathname(__FILE__).dirname.expand_path
     end
@@ -42,9 +42,10 @@ module Ti
       end
     end
     
+
     def self.config_options
       return @config_options if @config_options
-      config    = ::File.open(root.join('tiapp.xml'))
+      config    = ::File.open(project_path.join('tiapp.xml'))
       contents  = Nokogiri::XML(config)
       config.close
       @config_options ||= {
