@@ -34,11 +34,15 @@ module Ti
           create_file_copy_content('.gitignore', 'gitignore')
           create_file_copy_content("app/#{@name_underscore}/stylesheets/app.sass", 'app/stylesheets/app.sass')
           
-          # Lastly, our generic templates
+          # Create the generic templates
           default_templates = ['Rakefile', 'Readme.md', 'Coffeefile']
           default_templates.each do |temp|
             create_file_with_template(temp, temp, @app_properties)
           end
+          
+          # Last, create some specific iphone files
+          create_entitlements
+          symlink_files
         end
         
 
@@ -56,6 +60,30 @@ module Ti
           )
         end
         
+        
+        def self.create_entitlements
+          entitlements = project_path.join('build/iphone/Entitlements.plist')
+          unless File.exists?(entitlements)
+            File.open(entitlements, 'w') do |f|
+              f.puts <<-LINE
+<?xml versio="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>get-task-allow</key>
+  <false/>
+</dict>
+</plist>
+              LINE
+            end
+          end
+        end
+
+
+        def self.symlink_files
+          system("ln -s #{project_path.join('Rakefile')} #{project_path.join('build/iphone/')}")
+          system "ln -s #{project_path.join('tiapp.xml')} #{project_path.join('build/iphone/')}"
+        end
 
         
         private

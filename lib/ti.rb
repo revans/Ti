@@ -59,7 +59,7 @@ module Ti
         :copyright        => contents.xpath('ti:app/copyright').text
       } if contents
     end
-
+    
   end
   
   autoload :Compile,    'compile'

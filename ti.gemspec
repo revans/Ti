@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "ti/version"
+require "ti"
 
 Gem::Specification.new do |s|
   s.name          = %q{ti}
-  s.version       = Ti::VERSION
+  s.version       = Ti.version
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
   s.date          = %q{2011-08-13}
