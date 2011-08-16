@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.shwinkers.shwinkers</id>
     <name>Shwinkers</name>
-    <version>0.6.2</version>
+    <version>1.6.2</version>
     <publisher>Shwinkers</publisher>
     <url>http://www.shwinkers.com</url>
     <description>Social Drinking Network</description>

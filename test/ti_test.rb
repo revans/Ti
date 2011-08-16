@@ -3,7 +3,6 @@ require 'test_helper'
 class TiTest < Test::Unit::TestCase
   
   def test_version_number
-    assert_match /\d\.\d.\d/, ::Ti::VERSION
     assert_match /\d\.\d.\d/, ::Ti.version
   end
   
@@ -11,11 +10,10 @@ class TiTest < Test::Unit::TestCase
     assert_match /\d\.\d.\d/, ::Ti::Source.titanium_version
   end
   
-  def test_setting_a_different_titanium_version
-    ::Ti::Source.titanium_version = '1.0.0'
-    assert_equal '1.0.0', ::Ti::Source.titanium_version
+  def test_the_version_of_titaniuam
+    assert_equal File.basename(Dir["#{::Ti::Source.titanium_base_path}/*"].sort.last), ::Ti::Source.titanium_version
   end
-  
+
   def test_root_path
     assert_equal Pathname(__FILE__).dirname.expand_path.join('../lib'), ::Ti::Source.root
   end
@@ -25,22 +23,20 @@ class TiTest < Test::Unit::TestCase
   end
   
   def test_compiler_path
-    assert_equal '/Library/Application\\ Support/Titanium/mobilesdk/osx/1.7.2/titanium.py', ::Ti::Source.compiler_path
-    ::Ti::Source.titanium_version = '1.6.2'
-    assert_equal '/Library/Application\\ Support/Titanium/mobilesdk/osx/1.6.2/titanium.py', ::Ti::Source.compiler_path
+    assert_equal '/Library/Application\\ Support/Titanium/mobilesdk/osx/1.6.2/titanium.py', ::Ti::Source.compiler_path.to_s
   end
   
   def test_config_options
+    config = ::Ti::Source.config_options
     assert_kind_of Hash, ::Ti::Source.config_options
-    assert_same ::Ti::Source.config_options, 
-      {:id                =>"com.shwinkers.shwinkers",
-       :name              =>"Shwinkers",
-       :underscore_name   =>"shwinkers",
-       :version           =>"0.6.2",
-       :publisher         =>"Shwinkers",
-       :url               =>"http://www.shwinkers.com",
-       :description       =>"Social Drinking Network",
-       :copyright         =>"Shwinkers"}
+    assert_equal 'com.shwinkers.shwinkers', config[:id]
+    assert_equal 'Shwinkers', config[:name]
+    assert_equal 'shwinkers', config[:underscore_name]
+    assert_equal '1.6.2', config[:version]
+    assert_equal 'Shwinkers', config[:publisher]
+    assert_equal 'http://www.shwinkers.com', config[:url]
+    assert_equal 'Social Drinking Network', config[:description]
+    assert_equal 'Shwinkers', config[:copyright]
   end
   
 end

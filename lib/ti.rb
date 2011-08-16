@@ -10,33 +10,42 @@ require 'thor'
 require 'core/string'
 
 module Ti
-  VERSION = '0.2.0'
   
   def self.version
-    VERSION
+    '0.2.0'
   end
   
   module Source
-    def self.titanium_version
-      @titanium_version ||= '1.7.2'
-    end
     
-    def self.titanium_version=(version)
-      @titanium_version = version
+    # Will always use the latest version of titanium you have to build the project
+    def self.titanium_version
+      @titanium_version = File.basename(Dir["#{titanium_base_path}/*"].sort.last)
     end
 
+
+    # The path to Ti
     def self.root
       @root ||= Pathname(__FILE__).dirname.expand_path
     end
     
+    
+    # Path to the project
     def self.project_path
-      @project_path ||= Pathname.new(Dir.pwd)
+      @project_path ||= Pathname.new(Dir.pwd).expand_path
     end
     
+    
+    # Allows the user to change the titanium version within the tiapp.xml
     def self.compiler_path
-      @compiler_path ||= case RbConfig::CONFIG['host_os']
-      when /linux/i   then "$HOME/.titanium/mobilesdk/linux/#{titanium_version}/titanium.py"
-      when /darwin/i  then "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{titanium_version}/titanium.py"
+      @compiler_path ||= titanium_base_path.join("#{config_options[:version]}/titanium.py")
+    end
+    
+    
+    # Base path to where titanium mobile lives
+    def self.titanium_base_path
+      @titanium_base_path ||= case RbConfig::CONFIG['host_os']
+      when /linux/i   then Pathname.new("$HOME/.titanium/mobilesdk/linux/")
+      when /darwin/i  then Pathname.new("/Library/Application\\ Support/Titanium/mobilesdk/osx/")
       else
         nil
       end
