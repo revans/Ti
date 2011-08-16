@@ -41,8 +41,10 @@ module Ti
           end
           
           # Last, create some specific iphone files
-          create_entitlements
-          symlink_files
+          if @platform.is_iphone?
+            create_entitlements
+            symlink_files
+          end
         end
         
 

@@ -7,4 +7,12 @@ class String
       tr("-", "_").
       downcase
   end
+  
+  def is_iphone?
+    !!(self =~ /^iphone$/i)
+  end
+  
+  def is_android?
+    !!(self =~ /^android$/i)
+  end
 end
