@@ -51,7 +51,8 @@ module Ti
       end
     end
     
-
+    # Config Options that are pulled from the tiapp.xml file.
+    # The developer can configure this through the tiapp.xml file.
     def self.config_options
       return @config_options if @config_options
       config    = ::File.open(project_path.join('tiapp.xml'))
