@@ -59,11 +59,6 @@ Clone the application
 
   git clone git://github.com/codewranglers/Ti.git
 
-Checkout the `develop` branch
-
-  git branch --track develop remotes/origin/develop
-  git checkout develop
-
 Build the gem manually
 
   gem build ti.gemspec && gem install ti-<version_in_lib/version.rb>.gem
