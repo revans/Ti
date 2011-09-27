@@ -53,18 +53,6 @@ Or run it using `ti`
 You can now start adding components. Enjoy!
 
 
-== On bleeding edge
-
-Clone the application
-
-  git clone git://github.com/codewranglers/Ti.git
-
-Build the gem manually
-
-  gem build ti.gemspec && gem install ti-<version_in_lib/version.rb>.gem
-
-
-
 == Contributing to Ti
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
