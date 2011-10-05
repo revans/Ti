@@ -40,6 +40,13 @@ namespace :build do
   task :iphone do
     build
   end
+
+  desc "Recreate build folder"
+  task :new do
+    system "rm -rf build"
+    system "mkdir -p build/iphone"
+    Rake::Task["setup:all"].invoke
+  end
 end
 
 def compile
@@ -57,17 +64,25 @@ def compile_coffee
   paths = [
     "app/#{APP_NAME}.coffee",
     "app/models/*.coffee",
-    "app/views/*.coffee"
+      "app/views/*.coffee"
   ]
 
   puts "PATHS: #{paths.join(' ')} ".yellow
 
-  `coffee -p --join --bare #{paths.join(' ')} > Resources/#{APP_NAME}.js`
-  `coffee -p --bare src/app.coffee > Resources/app.js`
+  compilation = (
+    system "coffee -c -b --join Resources/#{APP_NAME}.js -c -b #{paths.join(' ')}" and
+    system "coffee -p --bare src/app.coffee > Resources/app.js"
+  )
+
+  if compilation
+    puts "Successfully compiled CoffeeScript".green
+  else
+    puts "Error compiling CoffeeScript".red
+  end
 end
 
 def build(options={})
-  compile
+  return "Broken" unless compile
   options[:device] ||= 'iphone'
   puts "Building with Titanium with Ti... (DEVICE_TYPE:#{options[:device]})"
   FileUtils.mkdir_p "#{PROJECT_ROOT}/#{PROJECT_NAME}/build/iphone/"

@@ -26,7 +26,7 @@ module Ti
           FileUtils.cp(location.join("Resources/KS_nav_ui.png"),    "/tmp/")
           FileUtils.cp(location.join("Resources/KS_nav_views.png"), "/tmp/")
         end
-        
+
 
         def generate_files
           create_project_directory
@@ -36,10 +36,10 @@ module Ti
           create_with_template("app/#{underscore(@project_name)}/api.coffee", 'app/api.coffee', full_app_hash)
 
           create_with_template('.gitignore', 'defaults/gitignore', full_app_hash)
-          
+
           create_new_file("spec/app_spec.coffee",   templates('specs/app_spec.coffee'))
           create_new_file("app/#{underscore(@project_name)}/stylesheets/app.sass",   templates('app/stylesheets/app.sass'))
-          
+
           create_with_template('config/config.rb', 'defaults/config', full_app_hash)
           create_with_template("app/#{underscore(@project_name)}/helpers/application.coffee", 'app/helpers/application.coffee', full_app_hash)
 
@@ -47,25 +47,25 @@ module Ti
           default_templates.each do |tempfile|
             create_with_template(tempfile, "defaults/#{tempfile}", full_app_hash)
           end
-          
+
           # load default images
           FileUtils.cp("/tmp/KS_nav_ui.png",    location.join("Resources/images/"))
           FileUtils.cp("/tmp/KS_nav_views.png", location.join("Resources/images/"))
         end
-        
-        
+
+
         def create_project_directory
           create_directories('Resources', 'Resources/images', 'Resources/vendor', 
-            'config', 
-            'docs', 
-            "app/#{underscore(@project_name)}/models", 
-            "app/#{underscore(@project_name)}/helpers",
-            "app/#{underscore(@project_name)}/views", 
-            "app/#{underscore(@project_name)}/stylesheets", 
-            "app/#{underscore(@project_name)}/stylesheets/partials",
-            'spec/models', 'spec/views', 'spec/helpers') 
+                             'config', 
+                             'docs', 
+                             "app/#{underscore(@project_name)}/models", 
+          "app/#{underscore(@project_name)}/helpers",
+          "app/#{underscore(@project_name)}/views", 
+          "app/#{underscore(@project_name)}/stylesheets", 
+          "app/#{underscore(@project_name)}/stylesheets/partials",
+          'spec/models', 'spec/views', 'spec/helpers') 
         end
-        
+
         def remove_old_files
           remove_files('README')          
           remove_directories('Resources')
@@ -78,15 +78,15 @@ module Ti
 
         def generate_titanium_project
           titanium_platform = case ::Config::CONFIG['host_os']
-          when /linux/i
-            ::Ti::LINUX_TITANIUM
-          when /darwin/i
-            File.exists?(::Ti::OSX_TITANIUM.gsub('\\', '')) ? ::Ti::OSX_TITANIUM : ::Ti::OSX_TITANIUM_HOME
-          else
-            error("Currently, your OS (#{::Config::CONFIG['host_os']}) is not supported.")
-            exit(0)
-          end
-          
+                              when /linux/i
+                                ::Ti::LINUX_TITANIUM
+                              when /darwin/i
+                                File.exists?(::Ti::OSX_TITANIUM.gsub('\\', '')) ? ::Ti::OSX_TITANIUM : ::Ti::OSX_TITANIUM_HOME
+                              else
+                                error("Currently, your OS (#{::Config::CONFIG['host_os']}) is not supported.")
+                                exit(0)
+                              end
+
           "#{titanium_platform} create --name=#{@project_name} --platform=#{@device_platform} --id=#{@app_id}"
         end
 

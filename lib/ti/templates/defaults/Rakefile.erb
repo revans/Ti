@@ -63,6 +63,13 @@ namespace :build do
   task :iphone do
     build
   end
+
+  desc "Recreate build folder"
+  task :new do
+    system "rm -rf build"
+    system "mkdir -p build/iphone"
+    Rake::Task["setup:all"].invoke
+  end
 end
 
 def compile
@@ -111,7 +118,7 @@ def compile_coffee
   puts "Compiling CoffeeScript".blue
   paths = `find app/<%= app_name_underscore %> -name '*.coffee'`.split("\n")
   compilation = (
-  system "coffee -p --join --bare #{paths.join(' ')} > Resources/<%= app_name_underscore%>.js" and
+  system "coffee -c -b --join Resources/<%= app_name_underscore %>.js -c -b #{paths.join(' ')}" and
   system "coffee -p --bare app/app.coffee > Resources/app.js"
   )
 
@@ -125,7 +132,7 @@ def compile_coffee
 end
 
 def build(options={})
-  return unless compile
+  return "Broken" unless compile
   options[:device] ||= 'iphone'
   puts "Building with Titanium... (DEVICE_TYPE: #{options[:device]})".blue
   sh %Q{bash -c "#{TI_BUILD} run #{PROJECT_ROOT}/ #{IPHONE_SDK_VERSION} #{APP_ID} #{APP_NAME} #{APP_DEVICE} " \

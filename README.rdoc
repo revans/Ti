@@ -5,7 +5,7 @@ A rapid development framework for titanium.
 == Requirements
  
 * ruby 1.9.2
-* Titanium Developer Mobile SDK 1.6.2
+* Titanium Developer Mobile SDK 1.6.2/1.7.x
 * CoffeeScript
 * libffi `brew install libffi`
 

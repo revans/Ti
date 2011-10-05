@@ -23,7 +23,7 @@ module Ti
     def info
       say "Version #{::Ti::VERSION}"
     end
-    
+
     map %(n) => 'new'
     desc "new <name> <id> <platform>", "generates a new Titanium project."
     long_desc "Generates a new Titanium project. See 'ti help new' for more information.
@@ -34,7 +34,7 @@ module Ti
     def new(name, device_id='org.mycompany.demo', platform='iphone')
       ::Ti::Generate::Project.create(name, device_id, platform)
     end
-    
+
     map %w(g) => 'generate'
     desc "generate <model/controller/view> <name>", "generate a new model or view with jasmine specs."
     def generate(type, name)
@@ -47,8 +47,6 @@ module Ti
         ::Ti::Generate::Controller.create(name)
       end
     end
-
-
 
     map %w(s) => 'scaffold'
     desc "scaffold <window/tabgroup/view> <domain> <name>", "generate a scaffold for Titanium elements."
@@ -67,7 +65,7 @@ module Ti
           :app_name => get_app_name, 
           :name     => name })
     end
-    
+
     desc "compile <all/coffee/sass>", "compiles all CoffeeScripts"
     def compile(type)
       case
