@@ -1,3 +1,4 @@
+require 'session'
 module Ti
   module Generate
     class Project
@@ -10,7 +11,8 @@ module Ti
           @project_name    = name
           @device_platform = platform
           @app_id          = id
-          if system(generate_titanium_project)
+          
+          if generate_titanium_project
             create_directories('tmp')
             copy_defaults
             remove_old_files
@@ -75,19 +77,17 @@ module Ti
           base_location.join(@project_name)
         end
 
-
         def generate_titanium_project
-          titanium_platform = case ::Config::CONFIG['host_os']
-                              when /linux/i
-                                ::Ti::LINUX_TITANIUM
-                              when /darwin/i
-                                File.exists?(::Ti::OSX_TITANIUM.gsub('\\', '')) ? ::Ti::OSX_TITANIUM : ::Ti::OSX_TITANIUM_HOME
-                              else
-                                error("Currently, your OS (#{::Config::CONFIG['host_os']}) is not supported.")
-                                exit(0)
-                              end
-
-          "#{titanium_platform} create --name=#{@project_name} --platform=#{@device_platform} --id=#{@app_id}"
+          platform = ::Config::CONFIG['host_os']
+          if platform =~ /linux/i || platform =~ /darwin/i
+            cmd = "titanium create --name=#{@project_name} --platform=#{@device_platform} --id=#{@app_id}"
+            # We need to use the session gem so that we can access the user's aliases
+            bash = Session::Bash::new 'program' => 'bash --login -i'
+            bash.execute(cmd) { |out, err| puts out }
+          else
+             error("Currently, your OS (#{::Config::CONFIG['host_os']}) is not supported.")
+             exit(0)
+          end
         end
 
       end

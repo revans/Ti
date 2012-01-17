@@ -31,6 +31,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<thor>,                ["~> 0.14.6"])
   s.add_runtime_dependency(%q<rocco>,               ["~> 0.7"])
   s.add_runtime_dependency(%q<compass>,             ["~> 0.7"])
+  s.add_runtime_dependency(%q<session>,             ["~> 3.1"])
 
   s.add_development_dependency(%q<bundler>,         ["~> 1.0.14"])
   s.add_development_dependency(%q<rspec>,           ["~> 2.6.0"])
