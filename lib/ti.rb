@@ -12,12 +12,6 @@ require 'nokogiri'
 
 module Ti
   ROOT_PATH         = Pathname(__FILE__).dirname.expand_path
-  TITANIUM_VERSION  = '1.7.5'
-
-  # TODO: Need to support those how have install Titanium in their $HOME dir.
-  OSX_TITANIUM_HOME = "$HOME/Library/Application\\ Support/Titanium/mobilesdk/osx/#{::Ti::TITANIUM_VERSION}/titanium.py"
-  OSX_TITANIUM      = "/Library/Application\\ Support/Titanium/mobilesdk/osx/#{::Ti::TITANIUM_VERSION}/titanium.py"
-  LINUX_TITANIUM    = "$HOME/.titanium/mobilesdk/linux/#{::Ti::TITANIUM_VERSION}/titanium.py"
 
   autoload  :VERSION,       'ti/version.rb'
   autoload  :CLI,           'ti/cli.rb'
