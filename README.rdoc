@@ -5,16 +5,25 @@ A rapid development framework for titanium.
 == Requirements
 
 * ruby 1.9.2
-* Titanium Developer Mobile SDK 1.7.5
+* Titanium Developer Mobile SDK
 * CoffeeScript
 * libffi `brew install libffi`
 
 == Sample App
 
+Set an alias for titanium's command line interface to your /.bash_profile
+
+=== OS X
+  
+  alias titanium="$HOME/Library/Application\ Support/Titanium/mobilesdk/osx/<VERSION>/titanium.py"
+  
+=== Linux
+  
+  alias titanium=$HOME/.titanium/mobilesdk/linux/<VERSION>/titanium.py
+
 Install the gem
 
   gem install ti
-
 
 Create a new Project
 
