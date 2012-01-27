@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<coffee-script>,       ["~> 2.2.0"])
 
   s.add_runtime_dependency(%q<colored>,             ["~> 1.2"])
-  s.add_runtime_dependency(%q<rake>,                ["~> 0.8.7"]) # TODO: test with Rake 0.9.2
+  s.add_runtime_dependency(%q<rake>,                ["~> 0.9.2"])
   s.add_runtime_dependency(%q<nokogiri>,            ["~> 1.4.4"])
   s.add_runtime_dependency(%q<erubis>,              ["~> 2.7.0"])
   s.add_runtime_dependency(%q<rocco>,               ["~> 0.7"])
@@ -33,7 +33,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<compass>,             ["~> 0.7"])
   s.add_runtime_dependency(%q<session>,             ["~> 3.1"])
 
-  s.add_development_dependency(%q<bundler>,         ["~> 1.0.14"])
+  # s.add_development_dependency(%q<bundler>,         ["~> 1.0.14"])
+  s.add_development_dependency(%q<bundler>,         ["~> 1.1.pre.10"])
   s.add_development_dependency(%q<rspec>,           ["~> 2.6.0"])
 end
 

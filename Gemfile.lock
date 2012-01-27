@@ -1,13 +1,13 @@
 PATH
   remote: .
   specs:
-    ti (0.2.1)
+    ti (0.2.0)
       coffee-script (~> 2.2.0)
       colored (~> 1.2)
       compass (~> 0.7)
       erubis (~> 2.7.0)
       nokogiri (~> 1.4.4)
-      rake (~> 0.8.7)
+      rake (~> 0.9.2)
       rocco (~> 0.7)
       rocco (~> 0.7)
       session (~> 3.1)
@@ -35,7 +35,7 @@ GEM
     multi_json (1.0.4)
     mustache (0.99.4)
     nokogiri (1.4.7)
-    rake (0.8.7)
+    rake (0.9.2)
     redcarpet (2.1.0)
     rocco (0.8.2)
       mustache
@@ -57,6 +57,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.0.14)
+  bundler (~> 1.1.pre.10)
   rspec (~> 2.6.0)
   ti!
