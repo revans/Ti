@@ -4,7 +4,7 @@ require "ti/version"
 
 Gem::Specification.new do |s|
   s.name          = %q{ti}
-  s.version       = Ti::VERSION
+  s.version       = '0.2.0'
   s.platform      = Gem::Platform::RUBY
   s.authors       = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
   s.date          = %q{2011-05-23}
