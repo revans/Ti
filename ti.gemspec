@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Robert R Evans", "Julius Francisco", "Wynn Netherland", "Rupak Ganguly"]
   s.date          = %q{2011-05-23}
   s.email         = %q{robert@codewranglers.org}
-  s.homepage      = %q{http://github.com/codewranglers/ti}
+  s.homepage      = %q{http://github.com/revans/Ti}
   s.summary       = %q{Ti - A Titanium Rapid Development Framework}
   s.description   = %q{Titanium Rapid Development Framework}
   s.license       = "MIT"
