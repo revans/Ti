@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ti (0.2.1)
+    ti (0.2.0)
       coffee-script (~> 2.2.0)
       colored (~> 1.2)
       compass (~> 0.7)
